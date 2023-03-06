@@ -23,15 +23,15 @@ app.use(express.urlencoded({extended:false}))
 app.set('view engine','ejs')
 app.use('/user',userRouter)
 
-export async function sendotp()
-{
-    try{
-        const otp=`${Math.floor(1000+Math.random()*9000)}`
-    }
-    catch{
+// export async function sendotp()
+// {
+//     try{
+//         const otp=`${Math.floor(1000+Math.random()*9000)}`
+//     }
+//     catch{
         
-    }
-}
+//     }
+// }
  export async function mail(email,subject,text)
 {
     try {

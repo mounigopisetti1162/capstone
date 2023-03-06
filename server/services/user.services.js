@@ -19,15 +19,19 @@ export async function updatepass(id,newpass) {
     return client.db('chatting').collection('user').updateOne({_id:ObjectId(id)},{$set:{password:newpass,verfication:'changed'}});
 }
 export async function update_verification(id) {
-    console.log('password updTE')
+    console.log('verication of otp done')
     return client.db('chatting').collection('user').updateOne({_id:ObjectId(id)},{$set:{verified:true}});
 
 }
 export async function otps(otps,id,token)
-{return await client.db("chatting").collection('otps').insertOne({otps:otps,user_id:id,token:token})
+{return await client.db("chatting").collection('otps').insertOne({otps:otps,user_id:id,token:token,createdAt:Date.now(),expiresAt:Date.now()+3600000})
 
 }
-export async function getotp(otp)
+export async function getotp(token)
 {
-    return await client.db('chatting').collection('otps').findOne({otps:otp})
+    return await client.db('chatting').collection('otps').findOne({token:token})
+}
+export async function deleteotps(token)
+{
+    return await client.db('chatting').collection('otps').deleteMany({token})
 }

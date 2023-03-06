@@ -4,18 +4,35 @@ import * as Yup from "yup";
 import {  toast } from 'react-toastify';
 
 import { Formik, Form, Field, ErrorMessage} from "formik";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 function Otpverification() {
+  const nav=useNavigate()
+  const tokens=useParams()
+  const token=tokens.token
     const onSubmit=(values)=>{
         console.log("data")
-        fetch(`${API}/user/otpverification`,{
+        fetch(`${API}/user/otpverification/${token}`,{
         method:"POST",
         body:JSON.stringify(values),
         headers:{"Content-type":"application/json"},
-    }).then((data)=> data.json()).then((data)=>{
+    }).then((data)=>{
+      console.log("data")
+    if(data.status===403)
+    {
+      toast('otp has expired')
+    } 
+    else if(data.status===404)
+    {
+      toast('wrong otp entered')
+    }
+    
+    return data.json()}).then((data)=>{
+      if(data.message==='the verification is done')
+      {
             console.log(data)
             toast("verified")
-            nav('/login')
+            nav('/user/login')
+      }
         })
       }
       const validationSchema = Yup.object().shape({

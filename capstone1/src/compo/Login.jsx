@@ -28,6 +28,8 @@ export default function Login() {
 
 
 const onSubmit=(values)=>{
+  console.log("submited")
+
   setstatus('loding..') 
   console.log(values)
   fetch(`${API}/user/login`,{
@@ -37,7 +39,7 @@ const onSubmit=(values)=>{
     
   }).then((data)=>
   {
-
+console.log(data)
 
 if(data.status===401)
 {
@@ -46,20 +48,23 @@ if(data.status===401)
 throw new Error(data.statusText)
 
 }
-// else if(data.status===402)
-// {
-//   toast('do the verification process')
+else if(data.status===402)
+{
+  toast("verification needed")
+  setstatus("error")
+// throw new Error(data.statusText)
 
-  
-// }
+}
 
-setstatus("submited");
-return data.json();}).then((data)=>{console.log(data);
-localStorage.setItem('token',data.token);
-nav('/home');
-toast("Loged in sucessfullt")
-
+return data.json();})
+.then((data)=>{console.log(data);
 // localStorage.setItem('token',data.token);
+if(data.message==="logged in sucessfully")
+{
+nav('/home');
+toast("Logged in sucessfully")
+localStorage.setItem('token',data.token);
+}
 })
 .catch((err)=>{console.log(err);
 toast("inalid credentials")})

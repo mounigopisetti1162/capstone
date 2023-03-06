@@ -3,15 +3,24 @@ import bcrypt from 'bcrypt'
 import  jwt  from 'jsonwebtoken';
 import * as dotenv from "dotenv"
 import { mail,generatehashedpassword } from '../index.js';
-import {addnewuser,getuser,getuser1, getuserbyid,updatepass,otps,getotp,update_verification} from '../services/user.services.js'
+import {addnewuser,getuser,getuser1, getuserbyid,updatepass,otps,getotp,update_verification,deleteotps} from '../services/user.services.js'
 import randomstring from 'randomstring';
 
 const router=express.Router()
-//  const otpverification=async({id,email})=>{
+ async function otpverification(id,email){
     
-// //    res.send(otpsstore)
+const otp=`${Math.floor(1000+Math.random()*9000)}`
+const hashotp=await generatehashedpassword(otp)
 
-//  }
+const token2=randomstring.generate(15);
+const link=`${process.env.BASE_URL}/mail-verification/${token2}`
+
+   const verification_otp=`<p> enter the ${otp} in the app to do the verification process  enter in this ${link}</p>`
+   // this objectid need to be chnaged from new ObjectId to general number
+await mail(email,'verification mail',verification_otp)
+const otpsstore=await otps(hashotp,id,token2)
+
+ }
 router.get('/signup',async function(request,responce)
 {
     const user=await getuser1()
@@ -32,49 +41,71 @@ router.post('/signup',async function(req,res)
     const hashpassword=await generatehashedpassword(password)
     const hashpassword2=await generatehashedpassword(confrimpassword)
       //  db.movies.insertMany(data)
-    //  
+     
     const newuser = await addnewuser(firstname,lastname,email,hashpassword,hashpassword2,)
     
     const id=newuser.insertedId.toString()
-    const otp=`${Math.floor(1000+Math.random()*9000)}`
-    const token=randomstring.generate(15);
-    const link=`${process.env.BASE_URL}/mail-verification/${token}`
-  
-       const verification_otp=`<p> enter the ${otp} in the app to do the verification process  enter in this ${link}</p>`
-       // this objectid need to be chnaged from new ObjectId to general number
-    await mail(email,'verification mail',verification_otp)
-    const otpsstore=await otps(otp,id,token)
-    // otpverification(id,email)
+   
+    otpverification(id,email)
+
+    const token=jwt.sign({id:id},process.env.SCRETE_TOKEN)
     console.log(newuser.insertedId.toString())
-      res.send({message:"hai mounika"})
+      res.send({message:"signup processs",token:token})
     // }
 })
-router.post('/otpverification',async function (request,responce)
+router.post('/otpverification/:token',async function (request,responce)
 {
+    console.log("hello thhis is verification page")
+    const {token}=request.params
     const {otp}=request.body
-    const otp_found=await getotp(otp)
+    const otp_found=await getotp(token)
+
     console.log(otp_found)
+    
     if(otp_found)
     {
+        const {expiresAt}=otp_found
+        const hashedotp=otp_found.otps
+        console.log(hashedotp)
+        if(expiresAt<Date.now())
+        {
+            await deleteotps(token)
+            responce.status(403).send({message:'otp has expired'})
+        }
+        else{
+        const otp_verify=await bcrypt.compare(otp,hashedotp)
+
+            if(otp_verify)
+            {
         const name=await update_verification(otp_found.user_id)
-        responce.send({message:'the verification is done'})
+        responce.status(200).send({message:'the verification is done'})
+        await deleteotps(token)
+            }
+            else{
+                responce.status(404).send({message:'wrong otp entered'})
+            }
+        }
     }
     else{
         responce.send({message:'the otp is not valid'})
     }
 })
+
 router.post('/login',async function(request,responce)
 {
     const {email,password}=request.body;
     const emailfound=await getuser(email)
-    // console.log(emailfound.verified)
+    // console.log("login")
+    const id=emailfound._id.toString()
 
     if(!emailfound)
     {
-        responce.send({message:'user not found'})
+        
+        responce.status(401).send({message:'user not found'})
     }
-    else if(!emailfound.verified){
+    else if(!(emailfound.verified)){
         responce.status(402).send({message:'do the verification process'})
+        otpverification(id,email)
 
     }
     else{

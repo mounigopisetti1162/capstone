@@ -42,6 +42,7 @@ const Signup = () => {
         headers:{"Content-Type":"application/json"},
       }).then((data)=>
       {
+        console.log(data)
     if(data.status===401)
     {
       toast("email alredy exists")
@@ -49,12 +50,13 @@ const Signup = () => {
     throw new Error(data.statusText)
     }
     setstatus("submited");
-    return data.json();}).then((data)=>{navigate("/home")
+    return data.json();})
+    .then((data)=>{navigate("/user/login")
     console.log(data)
 
-    toast("Sigined in sucessfully")    
+    toast("verify- Mail has been sent")    
     //adding token to the local storage
-    localStorage.setItem('token',data.token);
+    // localStorage.setItem('token',data.token);
     })
     .catch((err)=>{
       toast("username alredy exist")
@@ -165,7 +167,7 @@ const Signup = () => {
 
 
           <button type="submit" className="btn btn-primary">
-            Submit
+           {status}
           </button>
 <br></br>
         <Link to='/user/login'>Alredy had an account</Link>
