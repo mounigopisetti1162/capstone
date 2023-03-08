@@ -6,8 +6,8 @@ import bcrypt from 'bcrypt'
 import jwt  from "jsonwebtoken";
 import nodemailer from 'nodemailer'
 import userRouter from './routes/user.route.js'
-
-
+import profileRouter from './routes/profile.routes.js'
+import messageRouter from './routes/message.routes.js'
 export const app=express()
 dotenv.config() 
 
@@ -22,6 +22,8 @@ app.use(cors())
 app.use(express.urlencoded({extended:false}))
 app.set('view engine','ejs')
 app.use('/user',userRouter)
+app.use('/profile',profileRouter)
+app.use('/message',messageRouter)
 
 // export async function sendotp()
 // {

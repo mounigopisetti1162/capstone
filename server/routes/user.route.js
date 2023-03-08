@@ -1,10 +1,12 @@
 import express from 'express'
 import bcrypt from 'bcrypt'
 import  jwt  from 'jsonwebtoken';
+import { ObjectId } from "mongodb";
 import * as dotenv from "dotenv"
 import { mail,generatehashedpassword } from '../index.js';
 import {addnewuser,getuser,getuser1, getuserbyid,updatepass,otps,getotp,update_verification,deleteotps} from '../services/user.services.js'
 import randomstring from 'randomstring';
+import { auth } from '../middleware/auth.js'; 
 
 const router=express.Router()
  async function otpverification(id,email){
@@ -21,9 +23,16 @@ await mail(email,'verification mail',verification_otp)
 const otpsstore=await otps(hashotp,id,token2)
 
  }
-router.get('/signup',async function(request,responce)
+router.get('/users',async function(request,responce)
 {
     const user=await getuser1()
+    responce.send(user)
+})
+router.get('/users/:id',async function(request,responce)
+{
+    const {id}=request.params
+    console.log(id)
+    const user=await getuserbyid(id)
     responce.send(user)
 })
 
@@ -114,7 +123,7 @@ router.post('/login',async function(request,responce)
         if(pass)
         {
             const token=jwt.sign({id:emailfound._id},process.env.SCRETE_TOKEN)
-            responce.status(200).send({message:"logged in sucessfully",token:token})
+            responce.status(200).send({message:"logged in sucessfully",token:token,emailfound})
 
         }
         else{
@@ -160,8 +169,9 @@ responce.send({message:'we will reset the password'})
     }
 })
 
-router.post(`/reset-password`,async function(request,responce)
+router.post(`/reset-passwordss`,async function(request,responce)
 {
+    console.log("this is the reset page")
     const {email,password}=request.body
     const userfound=await getuser(email)
     console.log("dataaa")
@@ -176,3 +186,10 @@ router.post(`/reset-password`,async function(request,responce)
 
 
 export default router;
+
+async function updating(req) {
+    const id=req.params.id
+    const value=req.body
+    console.log(value)
+    return client.db('chatting').collection('user').updateOne({_id:ObjectId(id)},{$set: req.body });
+}

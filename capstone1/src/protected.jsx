@@ -4,7 +4,7 @@ function ProtectedRoutes({children}) {
     const isauth=localStorage.getItem("token")
 
     return isauth ? (<div>
-      <h2>this is protected</h2>{children}
+      {children}
        </div>) : (<Navigate replace to='/'/>)
     
   }

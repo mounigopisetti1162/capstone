@@ -61,7 +61,8 @@ return data.json();})
 // localStorage.setItem('token',data.token);
 if(data.message==="logged in sucessfully")
 {
-nav('/home');
+  const id=(data.emailfound._id)
+nav(`/message/${id}`);
 toast("Logged in sucessfully")
 localStorage.setItem('token',data.token);
 }
