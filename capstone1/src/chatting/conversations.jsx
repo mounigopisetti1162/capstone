@@ -5,7 +5,7 @@ import './conversations.css'
 import Message from './message/Message'
 import SendIcon from '@mui/icons-material/Send';
 import { LineAxisOutlined } from '@mui/icons-material'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import { useState } from 'react'
 import axios from 'axios';
 import { API } from '../loginandsignup/global'
@@ -17,11 +17,13 @@ function Conversation() {
 const id=useParams()
 // console.log(id)
 const [people,setpeople]=useState([])
+const [frduserpeo,setfrduserpeo]=useState([])
 const [conversations,setconversations]=useState([])
 const [currentchat,setcurrentchat]=useState(null)
 const [message,setmessage]=useState([])
 const [newmessage,setnewmessage]=useState("")
 const socket=useRef()
+const nav=useNavigate()
 // const [socket,setsocket]=useState([])
 const [arrival,setarrival]=useState(null)
 const scrollref=useRef()
@@ -68,16 +70,22 @@ useEffect(()=>{
 useEffect(()=>{
   const getpeople=async ()=>{
     try {
-      const users= await axios.get(`${API}/user/users`).then()
+      const users= await axios({method:"get",url:`${API}/user/users`,headers:{"token":localStorage.getItem("token")}})
+      if(users.status===406)
+      {
+        toast("Unauthorized activities detedted")
+        localStorage.removeItem("token")
+        nav('/user/login')
+      }
       // console.log("users")
 
       let array =[] ;
       users.data.forEach((e)=>array.push(e._id))
-      console.log(array);
+      // console.log(array);
       
         // const {man}=users.data 
-        console.log(users.data)
-        console.log(id.id) 
+        // console.log(users.data)
+        // console.log(id.id) 
       setpeople(users.data)
       
     } catch (error) {
@@ -89,26 +97,50 @@ useEffect(()=>{
   }
   const getconversations=async ()=>{
 
-    const conversation=await axios.get(`${API}/message/convo/${id.id}`)
+    const conversation=await axios({method:"get",url:`${API}/message/convo/${id.id}`,headers:{"token":localStorage.getItem("token")}})
     // console.log(conversation.data)
+    if(conversation.status===406)
+    {
+      toast("Unauthorized activities detedted")
+      localStorage.removeItem("token")
+      nav('/user/login')
+    }
     setconversations(conversation.data)
     // console.log("first")
     // console.log(id.id)
   }
+//   const frduser=async (id,currentchat)=>{
+//     console.log("hello")
+//     // console.log(currentchat)
+//     const receiverid=currentchat.members.find((member)=>member!==id.id);
+//     console.log(receiverid)
+//   const frd=await axios.get(`${API}/user/users/${receiverid}`)
+//       setfrduserpeo(frd.data)
+// console.log("frd")
+    
+//   }
   
     getpeople()
     getconversations()
+    // frduser(id,currentchat)
 },[id.id])
 // console.log(people)
 
 
 useEffect(()=>{
   const getmessages=async()=>{
-    const message=await axios.get(`${API}/message/singlemsg/${currentchat?._id}`)
+    const message=await axios({method:"get",url:`${API}/message/singlemsg/${currentchat?._id}`,headers:{"token":localStorage.getItem("token")}})
+    if(message.status===406)
+    {
+      toast("Unauthorized activities detedted")
+      localStorage.removeItem("token")
+      nav('/user/login')
+    }
     setmessage(message.data)
     // console.log("message")
   }
   getmessages()
+
 },[currentchat,newmessage])
 
 
@@ -143,6 +175,7 @@ const handelSubmit=async (e)=>{
   {
   try {
     const res=await axios.post(`${API}/message/convo`,messagess)
+  
     setmessage([...message,res.data])
     setnewmessage("")
   } catch (error) {
@@ -152,12 +185,16 @@ const handelSubmit=async (e)=>{
 }
 
 }
+
+
+
+// console.log(receiverid)
 // console.log()
 // console.log("urrentchat)")
 
 // console.log(currentchat._id)
 // console.log(message)
-console.log(currentchat)
+// console.log(currentchat)
   return (
     <>
     <Navbar/>
@@ -175,9 +212,11 @@ console.log(currentchat)
 
         </div>
         <div className="chat-center">
+          {/* {frduser(id)} */}
         <div className="chat-center-wrapper">
           {currentchat ?
           <>
+          {/* {receiverid()} */}
           <div className='chatbox-top'>
             {
               message.map((m)=>(

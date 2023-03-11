@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import { API } from '../../loginandsignup/global'
+import { useNavigate } from 'react-router-dom'
 
 
 function Allfrds({people,id,setcurrentchat}) {
@@ -15,12 +16,13 @@ function Allfrds({people,id,setcurrentchat}) {
 //     }
 //     getuser()
 //   },[])
+const nav=useNavigate()
 const handelclick=async(people)=>{
 
 console.log(id.id)
 console.log(people._id)
 
-const existing=await axios.get(`${API}/message/convo/${id.id}/${people._id}`)
+const existing=await axios({method:"get",url:`${API}/message/convo/${id.id}/${people._id}`,headers:{"token":localStorage.getItem("token")}})
 if(existing.data[0]!==undefined)
 {
   setcurrentchat(existing.data[0])
@@ -33,8 +35,15 @@ const getconversation=async()=>
 {
   try {
     const res=await axios.post(`${API}/message/`,members)
+  
 
-    const existing=await axios.get(`${API}/message/convo/${id.id}/${people._id}`)
+    const existing=await axios.get({method:"get",url:`${API}/message/convo/${id.id}/${people._id}`,headers:{"token":localStorage.getItem("token")}})
+    if(res.status===406)
+    {
+      toast("Unauthorized activities detedted")
+      localStorage.removeItem("token")
+      nav('/user/login')
+    }
 
     setcurrentchat(res.data)
     console.log(res)
@@ -50,13 +59,13 @@ getconversation()
 
   return (
     <div className='conversations'>
-      {people.map((p)=>{
+      {people.map((p,key)=>{
         if(p._id!==id.id)
-        {
+        {key
           return(
         <div className="conversation" onClick={()=>handelclick(p)}>
          
-            <img className='convo-img' src={p.profile?p.profile:"/public/images/person/no-avatar.png"} alt="`src/no-avatar.png`"/>
+            <img className='convo-img' src={p.profile?p.profile.myfile:"/public/images/person/no-avatar.png"} alt="`src/no-avatar.png`"/>
             <span className="convo-text">{p.firstname}</span>
         </div>
       )}

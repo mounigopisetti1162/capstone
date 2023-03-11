@@ -15,22 +15,33 @@ function Navbar() {
         localStorage.removeItem("token")}
 const [people,setpeople]=useState()
         const id=useParams()
+        const nav=useNavigate()
         useEffect(()=>{
+          console.log(id.id)
 
           const navuser=async()=>{
             
-            const user=await axios.get(`${API}/user/users/${id}`)
+            const user=await axios({method:"get",url:`${API}/user/users/${id.id}`,headers:{"token":localStorage.getItem("token")}})
+            if(user.status===406)
+            {
+              toast("Unauthorized activities detedted")
+              localStorage.removeItem("token")
+              nav('/user/login')
+            }
             setpeople(user.data)
-            console.log(user)
+            // console.log(user)
           }
           navuser()
-        },[id.id])
-        console.log(people)
+        },[])
+        // console.log(people)
           const navi=()=>{
     navigate(`/profile/${id.id}`)
     console.log("first")
   }
-  console.log(id)
+  // console.log(people.profile)
+  // console.log(people.profile)
+
+
   return (
     <>
     <nav class="navbar bg-body-tertiary">
@@ -47,12 +58,15 @@ const [people,setpeople]=useState()
     </form>
 
     </div>
+    {people ?
   <div className='right'>
     <GroupsIcon className='group-icon'/>
-<img clasName='pro-pic' src='' alt='name' onClick={navi}/>
+   
+<img clasName='pro-pic' src={people.profile.myfile} alt='name' onClick={navi}/>
   <LogoutIcon className='logout' onClick={logout}/>
   
   </div>
+  :" "}
   </div>
 </nav>
 

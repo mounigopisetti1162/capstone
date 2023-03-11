@@ -4,10 +4,12 @@ import cors from 'cors'
 import * as dotenv from 'dotenv'
 import bcrypt from 'bcrypt'
 import jwt  from "jsonwebtoken";
+
 import nodemailer from 'nodemailer'
 import userRouter from './routes/user.route.js'
 import profileRouter from './routes/profile.routes.js'
 import messageRouter from './routes/message.routes.js'
+import bodyParser from 'body-parser'
 export const app=express()
 dotenv.config() 
 
@@ -17,9 +19,9 @@ const client=new MongoClient(MONGO_URL)
 await client.connect()
 console.log("monggo connected")
 
-app.use(express.json())
+app.use(express.json({limit:"50mb"}))
 app.use(cors())
-app.use(express.urlencoded({extended:false}))
+app.use(express.urlencoded({extended:false,parameterLimit:100000,limit:"100 mb"}))
 app.set('view engine','ejs')
 app.use('/user',userRouter)
 app.use('/profile',profileRouter)

@@ -1,11 +1,8 @@
-import express from 'express'
-import bcrypt from 'bcrypt'
-import  jwt  from 'jsonwebtoken';
-import { ObjectId } from "mongodb";
-import { mail,generatehashedpassword } from '../index.js';
-import randomstring from 'randomstring';
-import { update_profile,delete_profile } from '../services/profile.services.js';
-import {addnewuser,getuser,getuser1, getuserbyid,updatepass,otps,getotp,update_verification,deleteotps} from '../services/user.services.js'
+import express from 'express';
+import { generatehashedpassword } from '../index.js';
+import { delete_profile, update_profile } from '../services/profile.services.js';
+// import {addnewuser,getuser,getuser1, getuserbyid,updatepass,otps,getotp,update_verification,deleteotps} from '../services/user.services.js'
+import { getuserbyid } from '../services/user.services.js';
 
 const router=express.Router()
 

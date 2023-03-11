@@ -50,6 +50,14 @@ height: 100% !important;
     overflow-y: scroll;
     padding-right: 10px;
 }
+/* .chatbox-top textarea
+{
+    width: 200px !important;
+} */
+.chatbox-bottom{
+    top: 70%;
+    position: sticky;
+}
 .chat-info{
     /* position: absolute; */
     font-size: 50px;
@@ -73,8 +81,8 @@ opacity: 0.9;
     flex-direction: column;
 }
 .send-button{
-    width:70px;
-    height: 40px;
+    width:80px;
+    height: 45px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
@@ -94,7 +102,8 @@ opacity: 0.9;
     font-weight: 700;
 }
 .message-input{
-    width: 90%;
+    font-size: large;
+    width: 100%;
     padding: 10px 0;
     border: none;
     border-bottom: 1px solid gray;

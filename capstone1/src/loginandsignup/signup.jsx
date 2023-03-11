@@ -6,6 +6,7 @@ import {  toast } from 'react-toastify';
 import FileBase64 from 'react-file-base64';
 import { Formik, Form, Field, ErrorMessage} from "formik";
 import './signup.css'
+import axios from "axios";
 const Signup = () => {
 
   const [status,setstatus]=useState('submit')
@@ -21,8 +22,7 @@ const Signup = () => {
     .required("Confirm Password is required"),
     profile: Yup
       .string()
-      .min(10)
-      .required("mandetary"),
+      .min(10),
   });
 //intial values
   const initialValues = {
@@ -43,22 +43,23 @@ const Signup = () => {
     console.log("submited")
       setstatus('loding..') 
       console.log(values)
-      fetch(`${API}/user/signup`,{
-        method:'POST',
-        body:JSON.stringify(values),
-        headers:{"Content-Type":"application/json"},
-      }).then((data)=>
+      
+      const data={  firstname:values.firstname,email:values.email,lastname:values.lastname,password:values.password,confrimpassword:values.confrimpassword,profile:image
+      }
+      
+      axios.post(`${API}/user/signup`,data)
+     
+      .then((datas)=>
       {
-        console.log(data)
-    if(data.status===401)
+        console.log(datas)
+    if(datas.status===401)
     {
       toast("email alredy exists")
       setstatus("error")
-    throw new Error(data.statusText)
+    throw new Error(datas.statusText)
     }
     setstatus("submited");
-    return data.json();})
-    .then((data)=>{navigate("/user/login")
+    navigate("/user/login")
     console.log(data)
 
     toast("verify- Mail has been sent")    
@@ -71,7 +72,17 @@ const Signup = () => {
     }
   //change the color
     const renderError = (message) => <p className="help is-danger">{message}</p>;
+  // console.log(iteam)
   
+const [image,setimage]=useState({myfile:""})
+
+const handelfileupload= async (e)=>{
+ const file=e.target.files[0];
+ const base64=await converttobase64(file)
+ console.log(base64)
+ setimage({myfile:base64})
+}
+// console.log(image)
 
   return (
     <>
@@ -82,7 +93,6 @@ const Signup = () => {
 <div className="signup-1">
 <h3 className="loginLogo">InFiChat</h3>
 <img src='https://image.shutterstock.com/image-photo/women-hand-using-smartphone-typing-260nw-1198604539.jpg' alt='name'/>
-    
       </div>
       <div className="signup-2">
       <Formik
@@ -113,6 +123,7 @@ const Signup = () => {
                 type="text"
                 className="input"
                 placeholder="Full name"
+               
               />
               <ErrorMessage name="firstname" render={renderError} />
             </div>
@@ -187,15 +198,23 @@ const Signup = () => {
              Profile Pc
             </label>
             <div className="control">
-            {/* <FileBase64
-        multiple={ false }
-        onDone={ ({base64})=>setiteam({image:base64}) } /> */}
-              <Field
+              <img src="/public/images/person/no-avatar.png" alt='' className="signup-img"/>
+             <input
+             name="profile"
+             type="file"
+            //  type="text"
+             className="input-file"
+             id='file-upload'
+             accept=".jpeg,.png,.jpg"
+             placeholder="profile"
+             onChange={(e)=>handelfileupload(e)}/>
+                   {/* <Field
                 name="profile"
                 type="text"
                 className="input"
                 placeholder="profile"
-              />
+                values={iteam}
+              /> */}
               <ErrorMessage name="profile" render={renderError} />
             </div>
           </div>
@@ -224,3 +243,18 @@ const Signup = () => {
 };
 
 export default Signup;
+
+
+function converttobase64(file)
+{
+return new Promise((resolve,reject)=>{
+  const fileReader=new FileReader()
+  fileReader.readAsDataURL(file)
+  fileReader.onload=()=>{
+    resolve(fileReader.result)
+  }
+  fileReader.onerror=(err)=>{
+    reject(err)
+  }
+})
+}

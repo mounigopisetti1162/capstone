@@ -16,6 +16,13 @@
     justify-content: center;
 
 }
+.signup-img{
+height: 35px;
+width: 35px;
+border-radius: 50% !important;
+align-items: center !important;
+object-fit: cover;
+}
 .signup:hover{
     box-shadow: 5px 5px 10px 20px rgb(53, 186, 209);
 
