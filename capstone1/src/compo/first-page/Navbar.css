@@ -74,6 +74,9 @@ align-items: center !important;
 object-fit: cover;
 
 }
+.right img:hover{
+    cursor: pointer;
+}
 .right .logout{
     border: none;
     border-radius: 4px;

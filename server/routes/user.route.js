@@ -38,7 +38,7 @@ router.get('/users/:id',async function(request,responce)
 
 router.post('/signup',async function(req,res)
 {
-    const {firstname,email,lastname,password,confrimpassword}=req.body;
+    const {firstname,email,lastname,password,confrimpassword,profile}=req.body;
     const found=await getuser(email)
     console.log(found)
     // if(found)
@@ -51,7 +51,7 @@ router.post('/signup',async function(req,res)
     const hashpassword2=await generatehashedpassword(confrimpassword)
       //  db.movies.insertMany(data)
      
-    const newuser = await addnewuser(firstname,lastname,email,hashpassword,hashpassword2,)
+    const newuser = await addnewuser(firstname,lastname,email,hashpassword,hashpassword2,profile)
     
     const id=newuser.insertedId.toString()
    
@@ -105,7 +105,8 @@ router.post('/login',async function(request,responce)
     const {email,password}=request.body;
     const emailfound=await getuser(email)
     // console.log("login")
-    const id=emailfound._id.toString()
+    // console.log(emailfound._id)
+    console.log("emailfound._id")
 
     if(!emailfound)
     {
@@ -113,6 +114,8 @@ router.post('/login',async function(request,responce)
         responce.status(401).send({message:'user not found'})
     }
     else if(!(emailfound.verified)){
+    const id=emailfound._id.toString()
+
         responce.status(402).send({message:'do the verification process'})
         otpverification(id,email)
 

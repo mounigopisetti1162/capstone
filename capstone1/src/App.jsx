@@ -11,6 +11,7 @@ import Home from './compo/first-page/home';
 import ProtectedRoutes from './protected';
 import 'bootstrap/dist/css/bootstrap.min.css'
 import Conversation from './chatting/conversations';
+import Profile from './profile/Profile';
 
 function App() {
   const [count, setCount] = useState(0)
@@ -30,9 +31,9 @@ function App() {
       <Route path='/mail-verification/:token' element={<Otpverification/>}/>
       <Route path='/home' element={<ProtectedRoutes><Home/></ProtectedRoutes>}/>
       <Route path='/message/:id' element={<Conversation/>}/>
+      <Route path='/profile/:id' element={<Profile/>}/>
 
      </Routes>
-      
     </div>
   )
 }

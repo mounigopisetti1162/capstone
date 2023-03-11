@@ -7,12 +7,15 @@ import { mail,generatehashedpassword } from '../index.js';
 import {addnewuser,getuser,getuser1, getuserbyid,updatepass,otps,getotp,update_verification,deleteotps} from '../services/user.services.js'
 import randomstring from 'randomstring';
 import { auth } from '../middleware/auth.js'; 
-import { allconversation, conversation,message,idconversation,message_convo, allmessage } from '../services/message.service.js';
+import { allconversation, conversation,message,idconversation,message_convo, allmessage, findconversation } from '../services/message.service.js';
 const router=express.Router()
 
 router.post('/',async function(req,res)
 {
     const conversations=await conversation(req)
+    console.log("conversation")
+    console.log(conversations)
+
     res.send(conversations)
 
 })
@@ -34,6 +37,21 @@ router.get("/convo/:user_id",async function(req,res)
     catch(err)
     {
 res.send(err)
+    }
+})
+router.get("/convo/:user_id/:another_id",async function(req,res)
+{
+    try {
+        console.log('findconversation')
+        const conversations=await findconversation(req)
+        res.send(conversations)
+        console.log(conversation)
+
+        
+    }
+    catch(err)
+    {
+res.send({message:"empty"})
     }
 })
 

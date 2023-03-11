@@ -12,6 +12,10 @@ export async function idconversation(req)
 {
     return client.db("chatting").collection("conversation").find({members:{$in:[req.params.user_id]} }).toArray();
 }
+export async function findconversation(req)
+{
+    return client.db("chatting").collection("conversation").find({members:{$all:[req.params.user_id,req.params.another_id]} }).toArray();
+}
 export async function message(body)
 {
     return client.db("chatting").collection("message").insertOne(body,{createdAt:Date.now()})

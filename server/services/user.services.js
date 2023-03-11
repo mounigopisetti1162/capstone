@@ -1,8 +1,8 @@
 import {client} from '../index.js'
 import { ObjectId } from "mongodb";
 
-export async function addnewuser(firstname,lastname,email,hashpassword) {
-    return await client.db('chatting').collection('user').insertOne({ firstname:firstname,lastname:lastname,email: email, password: hashpassword,verified:false, profile:'',isAdmin:false,createdAt:Date.now(),city:'',discription:'',});
+export async function addnewuser(firstname,lastname,email,hashpassword,profile) {
+    return await client.db('chatting').collection('user').insertOne({ firstname:firstname,lastname:lastname,email: email, password: hashpassword,verified:false, profile:profile,isAdmin:false,createdAt:Date.now(),city:'',discription:'',});
 }
 
 export async function getuser(email) {
@@ -16,6 +16,7 @@ export async function getuser1() {
     return await client.db('chatting').collection('user').find({ }).toArray();
 }
 export async function getuserbyid(id) {
+    console.log("user by id")
     return await client.db('chatting').collection('user').findOne({_id:ObjectId(id)});
 }
 export async function updatepass(id,newpass) {
