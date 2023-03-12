@@ -38,7 +38,7 @@ const getconversation=async()=>
     const res=await axios.post(`${API}/message/`,members)
   
 
-    const existing=await axios.get({method:"get",url:`${API}/message/convo/${id.id}/${people._id}`,headers:{"token":localStorage.getItem("token")}})
+    const existing=await axios({method:"get",url:`${API}/message/convo/${id.id}/${people._id}`,headers:{"token":localStorage.getItem("token")}})
     if(res.response.status===406)
     {
       toast("Unauthorized activities detedted")
