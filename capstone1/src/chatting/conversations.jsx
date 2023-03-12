@@ -255,7 +255,7 @@ const handelSubmit=async (e)=>{
           {currentchat ?
           <>
           <div className="friendnames">
-            <img className='message-pic' src={frduserpeo.profile? frduserpeo.profile.myfile:'/public/images/person/2.jpg'} alt=''/>
+            <img className='message-pic' src={frduserpeo.profile? frduserpeo.profile.myfile:'/images/person/2.jpg'} alt=''/>
           <div className="friendname">
           {friendname}
           </div>
