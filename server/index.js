@@ -22,13 +22,8 @@ console.log("monggo connected")
 
 
 
+app.use(cors )
 app.use(express.json({limit:"50mb"}))
-app.use(cors(x=>x
-    .AllowAnyMethod()
-    .AllowAnyHeader()
-    .AllowAnyHeader()
-    .AllowCredentials()
-   ))
 // app.use(cors(x => x
 // 
 //     
