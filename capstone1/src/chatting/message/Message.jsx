@@ -35,7 +35,7 @@ useEffect(()=>
     <>
     <div className={own ? "message own":'message'}>
     <div className='message-top'>
-<img className='message-pic'src={ own?sender.profile?sender.profile.myfile:'/public/images/person/2.jpg':recevier.profile?recevier.profile.myfile:'/public/images/person/1.jpg'} alt='name'/>
+<img className='message-pic'src={ own?sender.profile?sender.profile.myfile:'/images/person/2.jpg':recevier.profile?recevier.profile.myfile:'/images/person/1.jpg'} alt='name'/>
 <p className='message-text'>{message.text}  </p> </div>
     <div className="message-bottom">
 

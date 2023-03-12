@@ -287,7 +287,7 @@ const handelSubmit=async (e)=>{
          <div className='no-chat'> <div className='chat-info'>Select your frds to start chat
          </div>
          <div>
-         <img className='chat-image' src='/public/images/person/OIP.jpg'/>
+         <img className='chat-image' src='/images/person/OIP.jpg'/>
          </div>  </div>}</div>
 
         </div>

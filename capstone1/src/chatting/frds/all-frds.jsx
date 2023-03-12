@@ -66,7 +66,7 @@ getconversation()
           return(
         <div className="conversation" onClick={()=>handelclick(p)}>
          
-            <img className='convo-img' src={p.profile?p.profile.myfile:"/public/images/person/no-avatar.png"} alt="`src/no-avatar.png`"/>
+            <img className='convo-img' src={p.profile?p.profile.myfile:"/images/person/no-avatar.png"} alt="`src/no-avatar.png`"/>
             <span className="convo-text">{p.firstname}</span>
         </div>
       )}

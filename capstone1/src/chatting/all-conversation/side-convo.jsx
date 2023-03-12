@@ -28,7 +28,7 @@ function Convo({conversations,currentuser}) {
   return (
     <div className='conversations'>
         <div className="conversation">
-            <img className='convo-img' src={user?.profile ? user.profile.myfile: "/public/images/person/no-avatar.png"} alt="`src/no-avatar.png`"/>
+            <img className='convo-img' src={user?.profile ? user.profile.myfile: "/images/person/no-avatar.png"} alt="`src/no-avatar.png`"/>
             <span className="convo-text">{user?.firstname}</span>
         </div>
     </div>

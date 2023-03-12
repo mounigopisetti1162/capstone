@@ -62,7 +62,7 @@ const [people,setpeople]=useState()
   <div className='right'>
     {/* <GroupsIcon className='group-icon'/> */}
    
-<img clasName='pro-pic' src={people.profile? people.profile.myfile:'/public/images/person/2.jpg'} alt='name' onClick={navi}/>
+<img clasName='pro-pic' src={people.profile? people.profile.myfile:'/images/person/2.jpg'} alt='name' onClick={navi}/>
   <LogoutIcon className='logout' onClick={logout}/>
   
   </div>
