@@ -73,7 +73,7 @@ useEffect(()=>{
 useEffect(()=>{
   const getpeople=async ()=>{
     try {
-      const users= await axios({method:"get",url:`${API}/user/users`,headers:{"token":localStorage.getItem("token")}}).then()
+      const users= await axios({method:"get",url:`${API}/user/users`,headers:{"token":localStorage.getItem("token")}})
      
       // console.log("users")
 
@@ -158,7 +158,9 @@ frduser()
 // console.log(frduserpeo)
 useEffect(()=>{
   const getmessages=async()=>{
-    const message=await axios({method:"get",url:`${API}/message/singlemsg/${currentchat?._id}`,headers:{"token":localStorage.getItem("token")}})
+    console.log("first")
+    console.log(localStorage.getItem("token"))
+    const message=await axios({method:"get",url:`${API}/message/singlemsg/${currentchat?._id}`,headers:{token:localStorage.getItem("token")}})
     // if(message.status===406)
     // {
     //   toast("Unauthorized activities detedted")
