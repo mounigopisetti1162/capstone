@@ -13,7 +13,7 @@ import {  toast } from 'react-toastify';
 import { API } from '../loginandsignup/global'
 import {io, Socket} from "socket.io-client"
 import Allfrds from './frds/all-frds'
-import SearchBar from './Searchbar'
+// import SearchBar from './Searchbar'
 
 function Conversation() {
 // const user=await
@@ -236,7 +236,7 @@ const handelSubmit=async (e)=>{
             <div className="chat-left-wrapper">
                 {/* <input className='frds-search' placeholder='search frds'onChange={handleChange}
    value={searchInput}/> */}
-   <SearchBar/>
+   {/* <SearchBar/> */}
 
                 {conversations.map((C)=>(
                 <div onClick={()=>setcurrentchat(C)}>
