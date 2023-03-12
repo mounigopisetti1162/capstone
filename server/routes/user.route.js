@@ -24,14 +24,14 @@ await mail(email,'verification mail',verification_otp)
 const otpsstore=await otps(hashotp,id,token2)
 
  }
-router.get('/users',async function(request,responce)
+router.get('/users',auth,async function(request,responce)
 {
-    // console.log('i');
+    console.log('i');
     const user=await getuser1()
     // console.log(user);
     responce.send(user)
 })
-router.get('/users/:id',async function(request,responce)
+router.get('/users/:id',auth,async function(request,responce)
 {
     console.log("first")
     const {id}=request.params
