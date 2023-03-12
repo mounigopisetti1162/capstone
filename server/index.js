@@ -19,8 +19,16 @@ const client=new MongoClient(MONGO_URL)
 await client.connect()
 console.log("monggo connected")
 
+
+
+
 app.use(express.json({limit:"50mb"}))
 app.use(cors())
+app.UseCors(x => x
+    .AllowAnyMethod()
+    .AllowAnyHeader()
+    .SetIsOriginAllowed(origin => true) // allow any origin
+    .AllowCredentials());
 app.use(express.urlencoded({extended:false,parameterLimit:100000,limit:"100 mb"}))
 app.set('view engine','ejs')
 app.use('/user',userRouter)
