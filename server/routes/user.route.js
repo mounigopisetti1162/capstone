@@ -47,12 +47,12 @@ router.post('/signup',async function(req,res)
     const {firstname,email,lastname,password,confrimpassword,profile}=req.body;
     const found=await getuser(email)
     // console.log(found)
-    // if(found)
-    // {
-    //     console.log("not")
-    //     res.status(401).send({message:"user alredy exist"})
-    // }
-    // else{
+    if(found)
+    {
+        console.log("not")
+        res.status(401).send({message:"user alredy exist"})
+    }
+    else{
     const hashpassword=await generatehashedpassword(password)
     // const hashpassword2=await generatehashedpassword(confrimpassword)
       //  db.movies.insertMany(data)
@@ -66,7 +66,7 @@ router.post('/signup',async function(req,res)
     const token=jwt.sign({id:id},process.env.SCRETE_TOKEN)
     // console.log(newuser.insertedId.toString())
       res.send({message:"signup processs",token:token})
-    // }
+    }
 })
 
 router.post('/otpverification/:token',async function (request,responce)

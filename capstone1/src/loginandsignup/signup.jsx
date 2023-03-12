@@ -7,6 +7,8 @@ import FileBase64 from 'react-file-base64';
 import { Formik, Form, Field, ErrorMessage} from "formik";
 import './signup.css'
 import axios from "axios";
+import Resizer from "react-image-file-resizer";
+
 const Signup = () => {
 
   const [status,setstatus]=useState('submit')
@@ -25,6 +27,8 @@ const Signup = () => {
       .min(10),
   });
 //intial values
+const [image,setimage]=useState({myfile:""})
+
   const initialValues = {
 
     firstname: "picha",
@@ -38,14 +42,65 @@ const Signup = () => {
 
 // on submitting the valiadation and passing to the backend
 
+
+
+
+  // var fileInput = false;
+  // if (e.target.files[0]) {
+  //   fileInput = true;
+  // }
+  // if (fileInput) {
+    
+  //     Resizer.imageFileResizer(
+  //       e.target.files[0],
+  //       300,
+  //       300,
+  //       "JPEG",
+  //       100,
+  //       0,
+  //       (uri) => {
+  //         console.log(uri);
+  //         setimage({myfile:uri });
+  //         console.log(image)
+  //       },
+  //       "base64",
+  //       200,
+  //       200
+  //     );
+   
+  
+  // console.log(image)
+  console.log("image")
+
+//  const file=e.target.files[0];
+//  const base64=await converttobase64(file)
+//  console.log(base64)
+//  setimage({myfile:base64})
+
+const handelfileupload= async (e)=>{
+
+  try {
+    const file = e.target.files[0];
+    const image = await resizeFile(file);
+    setimage({myfile:image})
+    console.log(image);
+  } catch (err) {
+    console.log(err);
+  }
+}
+console.log(image)
   const onSubmit = (values) => {
 
     console.log("submited")
       setstatus('loding..') 
       console.log(values)
+      console.log(image)
+
+      
       
       const data={  firstname:values.firstname,email:values.email,lastname:values.lastname,password:values.password,confrimpassword:values.confrimpassword,profile:image
       }
+      console.log(data)
       
       axios.post(`${API}/user/signup`,data)
      
@@ -74,14 +129,7 @@ const Signup = () => {
     const renderError = (message) => <p className="help is-danger">{message}</p>;
   // console.log(iteam)
   
-const [image,setimage]=useState({myfile:""})
 
-const handelfileupload= async (e)=>{
- const file=e.target.files[0];
- const base64=await converttobase64(file)
- console.log(base64)
- setimage({myfile:base64})
-}
 // console.log(image)
 
   return (
@@ -100,7 +148,7 @@ const handelfileupload= async (e)=>{
     validationSchema={validationSchema}
     onSubmit={values => {
        onSubmit(values);
-      console.log(values)
+      // console.log(values)
     }}>
 
     <div className="form">
@@ -198,7 +246,7 @@ const handelfileupload= async (e)=>{
              Profile Pc
             </label>
             <div className="control">
-              <img src="/public/images/person/no-avatar.png" alt='' className="signup-img"/>
+              <img src="/images/person/no-avatar.png" alt='' className="signup-img"/>
              <input
              name="profile"
              type="file"
@@ -244,6 +292,21 @@ const handelfileupload= async (e)=>{
 
 export default Signup;
 
+const resizeFile = (file) =>
+  new Promise((resolve) => {
+    Resizer.imageFileResizer(
+      file,
+      300,
+      300,
+      "JPEG",
+      100,
+      0,
+      (uri) => {
+        resolve(uri);
+      },
+      "base64"
+    );
+  });
 
 function converttobase64(file)
 {
