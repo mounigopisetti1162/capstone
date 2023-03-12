@@ -3,7 +3,7 @@ import  jwt  from "jsonwebtoken";
  {
     try {
         const token=request.header("token")
-        console.log(token)
+        // console.log(token)
         jwt.verify(token,process.env.SCRETE_TOKEN)
         next()
     } catch (err) {

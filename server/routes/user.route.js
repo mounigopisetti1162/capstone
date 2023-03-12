@@ -33,9 +33,12 @@ router.get('/users',auth,async function(request,responce)
 })
 router.get('/users/:id',auth,async function(request,responce)
 {
+    console.log("first")
     const {id}=request.params
-    // console.log(id)
+    console.log(id)
+console.log("the frdsid")
     const user=await getuserbyid(id)
+    console.log("getuser")
     responce.send(user)
 })
 

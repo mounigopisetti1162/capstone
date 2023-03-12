@@ -3,7 +3,8 @@ import './side-convo.css'
 import axios from 'axios'
 import { API } from '../../loginandsignup/global'
 import { useNavigate } from 'react-router-dom'
-
+import {  toast } from 'react-toastify';
+  import 'react-toastify/dist/ReactToastify.css';
 
 function Convo({conversations,currentuser}) {
   const nav=useNavigate()

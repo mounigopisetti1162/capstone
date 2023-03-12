@@ -2,7 +2,8 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import { API } from '../../loginandsignup/global'
 import { useNavigate } from 'react-router-dom'
-
+import {  toast } from 'react-toastify';
+  import 'react-toastify/dist/ReactToastify.css';
 
 function Allfrds({people,id,setcurrentchat}) {
   // console.log(people)
@@ -38,7 +39,7 @@ const getconversation=async()=>
   
 
     const existing=await axios.get({method:"get",url:`${API}/message/convo/${id.id}/${people._id}`,headers:{"token":localStorage.getItem("token")}})
-    if(res.status===406)
+    if(res.response.status===406)
     {
       toast("Unauthorized activities detedted")
       localStorage.removeItem("token")

@@ -6,8 +6,8 @@ const router=express.Router()
 router.post('/',async function(req,res)
 {
     const conversations=await conversation(req)
-    console.log("conversation")
-    console.log(conversation)
+    // console.log("conversation")
+    // console.log(conversation)
 
     res.send(conversations)
 
@@ -22,7 +22,7 @@ res.send(all_convo)
 router.get("/convo/:user_id",auth,async function(req,res)
 {
     try {
-        console.log('pagessss')
+        // console.log('pagessss')
         const conversations=await idconversation(req)
         res.send(conversations)
         
@@ -36,10 +36,10 @@ router.get("/convo/:user_id/:another_id",auth,async function(req,res)
 {
     try {
         console.log('findconversation with 2 ids')
-        console.log(req.params)
+        // console.log(req.params)
         const conversations=await findconversation(req)
         res.send(conversations)
-        console.log(conversation)
+        // console.log(conversation)
 
         
     }
@@ -57,9 +57,9 @@ router.post('/convo',async function (req,res)
 router.get('/singlemsg/:conversationid',auth,async function (req,res)
 {
     try {
-        console.log("hello this is that msg")
+        // console.log("hello this is that msg")
         const messages=await message_convo(req)
-        console.log(messages)
+        // console.log(messages)
         res.send(messages)
     } catch (error) {
         res.send(error)

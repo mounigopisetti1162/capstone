@@ -8,9 +8,12 @@ import { LineAxisOutlined } from '@mui/icons-material'
 import { useNavigate, useParams } from 'react-router-dom'
 import { useState } from 'react'
 import axios from 'axios';
+import {  toast } from 'react-toastify';
+  import 'react-toastify/dist/ReactToastify.css';
 import { API } from '../loginandsignup/global'
 import {io, Socket} from "socket.io-client"
 import Allfrds from './frds/all-frds'
+import SearchBar from './Searchbar'
 
 function Conversation() {
 // const user=await
@@ -70,13 +73,8 @@ useEffect(()=>{
 useEffect(()=>{
   const getpeople=async ()=>{
     try {
-      const users= await axios({method:"get",url:`${API}/user/users`,headers:{"token":localStorage.getItem("token")}})
-      if(users.status===406)
-      {
-        toast("Unauthorized activities detedted")
-        localStorage.removeItem("token")
-        nav('/user/login')
-      }
+      const users= await axios({method:"get",url:`${API}/user/users`,headers:{"token":localStorage.getItem("token")}}).then()
+     
       // console.log("users")
 
       let array =[] ;
@@ -89,34 +87,36 @@ useEffect(()=>{
       setpeople(users.data)
       
     } catch (error) {
-      console.log(error)
+      // console.log(error.message)
+      if(error.message==="Request failed with status code 406")
+      {
+        toast("Unauthorized activities detedted")
+        localStorage.removeItem("token")
+        nav('/user/login')
+      }
     }
     // axios.get(`${API}/user/users`)
     // .then((res)=>console.log(res.data[0]._id))
     // .catch((err)=>console.log(err))
   }
+
+
+
   const getconversations=async ()=>{
 
     const conversation=await axios({method:"get",url:`${API}/message/convo/${id.id}`,headers:{"token":localStorage.getItem("token")}})
     // console.log(conversation.data)
-    if(conversation.status===406)
-    {
-      toast("Unauthorized activities detedted")
-      localStorage.removeItem("token")
-      nav('/user/login')
-    }
+    // console.log(conversation.status)
+    // if(conversation.status===406)
+    // {
+    //   toast("Unauthorized activities detedted")
+    //   localStorage.removeItem("token")
+    //   nav('/user/login')
+    // }
     setconversations(conversation.data)
     // console.log("first")
     // console.log(id.id)
   }
-//   const frduser=async (id,currentchat)=>{
-//     console.log("hello")
-//     // console.log(currentchat)
-//     const receiverid=currentchat.members.find((member)=>member!==id.id);
-//     console.log(receiverid)
-//   const frd=await axios.get(`${API}/user/users/${receiverid}`)
-//       setfrduserpeo(frd.data)
-// console.log("frd")
     
 //   }
   
@@ -125,17 +125,46 @@ useEffect(()=>{
     // frduser(id,currentchat)
 },[id.id])
 // console.log(people)
+const[friendname,setfriendname]=useState("")
+const[idfrd,setidfrd]=useState("")
+useEffect(()=>
+{
 
+  const frduser=async ()=>{
+    console.log("hello")
+    console.log(currentchat)
+    const receiverid=currentchat.members.find((member)=>member!==id.id);
+    console.log(receiverid)
+    try {
+      
+      const frd=await axios({method:"get",url:`${API}/user/users/${receiverid}`,headers:{"token":localStorage.getItem("token")}})
+          setfrduserpeo(frd.data)
+          setfriendname(frd.data.firstname)
+          console.log(frd.data.firstname)
+    console.log("frd")
+    const idfrd=await axios({method:"get",url:`${API}/user/users/${id.id}`,headers:{"token":localStorage.getItem("token")}})
+    setidfrd(idfrd.data)
 
+    } catch (error) {
+      console.log(error)
+      
+    }
+}
+frduser()
+},[currentchat])
+// console.log("first")
+// console.log(idfrd)
+// console.log("second")
+// console.log(frduserpeo)
 useEffect(()=>{
   const getmessages=async()=>{
     const message=await axios({method:"get",url:`${API}/message/singlemsg/${currentchat?._id}`,headers:{"token":localStorage.getItem("token")}})
-    if(message.status===406)
-    {
-      toast("Unauthorized activities detedted")
-      localStorage.removeItem("token")
-      nav('/user/login')
-    }
+    // if(message.status===406)
+    // {
+    //   toast("Unauthorized activities detedted")
+    //   localStorage.removeItem("token")
+    //   nav('/user/login')
+    // }
     setmessage(message.data)
     // console.log("message")
   }
@@ -195,6 +224,9 @@ const handelSubmit=async (e)=>{
 // console.log(currentchat._id)
 // console.log(message)
 // console.log(currentchat)
+
+
+
   return (
     <>
     <Navbar/>
@@ -202,7 +234,10 @@ const handelSubmit=async (e)=>{
     <div className='chatting'>
         <div className="chat-left">
             <div className="chat-left-wrapper">
-                <input className='frds-search' placeholder='search frds'/>
+                {/* <input className='frds-search' placeholder='search frds'onChange={handleChange}
+   value={searchInput}/> */}
+   <SearchBar/>
+
                 {conversations.map((C)=>(
                 <div onClick={()=>setcurrentchat(C)}>
                 <Convo conversations={C} currentuser={id}/>
@@ -213,16 +248,26 @@ const handelSubmit=async (e)=>{
         </div>
         <div className="chat-center">
           {/* {frduser(id)} */}
+
         <div className="chat-center-wrapper">
           {currentchat ?
           <>
+          <div className="friendnames">
+            <img className='message-pic' src={frduserpeo.profile? frduserpeo.profile.myfile:'/public/images/person/2.jpg'} alt=''/>
+          <div className="friendname">
+          {friendname}
+          </div>
+          </div>
+          
+         
           {/* {receiverid()} */}
           <div className='chatbox-top'>
+            
             {
               message.map((m)=>(
                 <div ref={scrollref}>
 
-                <Message message={m} own={m.sender===id.id}/>
+                <Message message={m} own={m.sender===id.id} recevier={frduserpeo} sender={id.id}/>
               </div>
               ))
             }

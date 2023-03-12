@@ -21,12 +21,13 @@ export async function message(body)
     return client.db("chatting").collection("message").insertOne(body,{createdAt:Date.now()})
 }
 export async function message_convo(req)
-{console.log(req.params)
-    console.log("req.params.conversationid")
+{
+    // console.log(req.params)
+    // console.log("req.params.conversationid")
     return client.db("chatting").collection("message").find({conversation_id:req.params.conversationid}).toArray()
 }
 export async function allmessage()
 {
-    console.log("req.params.conversationid")
+    // console.log("req.params.conversationid")
     return client.db("chatting").collection("message").find({ }).toArray()
 }
