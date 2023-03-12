@@ -137,12 +137,12 @@ useEffect(()=>
     console.log(receiverid)
     try {
       
-      const frd=await axios({method:"get",url:`${API}/user/users/${receiverid}`,headers:{"token":localStorage.getItem("token")}})
+      const frd=await axios.get(`${API}/user/users/${receiverid}`)
           setfrduserpeo(frd.data)
           setfriendname(frd.data.firstname)
           console.log(frd.data.firstname)
     console.log("frd")
-    const idfrd=await axios({method:"get",url:`${API}/user/users/${id.id}`,headers:{"token":localStorage.getItem("token")}})
+    const idfrd=await axios.get(`${API}/user/users/${id.id}`)
     setidfrd(idfrd.data)
 
     } catch (error) {

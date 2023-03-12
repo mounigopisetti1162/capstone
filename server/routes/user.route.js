@@ -31,7 +31,7 @@ router.get('/users',async function(request,responce)
     // console.log(user);
     responce.send(user)
 })
-router.get('/users/:id',auth,async function(request,responce)
+router.get('/users/:id',async function(request,responce)
 {
     console.log("first")
     const {id}=request.params
