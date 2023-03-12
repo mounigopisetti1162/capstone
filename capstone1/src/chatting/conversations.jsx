@@ -73,7 +73,7 @@ useEffect(()=>{
 useEffect(()=>{
   const getpeople=async ()=>{
     try {
-      const users= await axios({method:"get",url:`${API}/user/users`})
+      const users= await axios.get(`${API}/user/users`)
      
       // console.log("users")
 
