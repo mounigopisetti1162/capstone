@@ -73,7 +73,7 @@ useEffect(()=>{
 useEffect(()=>{
   const getpeople=async ()=>{
     try {
-      const users= await axios({method:"get",url:`${API}/user/users`,headers:{"token":localStorage.getItem("token")}})
+      const users= await axios({method:"get",url:`${API}/user/users`})
      
       // console.log("users")
 
@@ -104,7 +104,7 @@ useEffect(()=>{
 
   const getconversations=async ()=>{
 
-    const conversation=await axios({method:"get",url:`${API}/message/convo/${id.id}`,headers:{"token":localStorage.getItem("token")}})
+    const conversation=await axios({method:"get",url:`${API}/message/convo/${id.id}`})
     // console.log(conversation.data)
     // console.log(conversation.status)
     // if(conversation.status===406)
@@ -137,12 +137,12 @@ useEffect(()=>
     console.log(receiverid)
     try {
       
-      const frd=await axios({method:"get",url:`${API}/user/users/${receiverid}`,headers:{"token":localStorage.getItem("token")}})
+      const frd=await axios({method:"get",url:`${API}/user/users/${receiverid}`})
           setfrduserpeo(frd.data)
           setfriendname(frd.data.firstname)
           console.log(frd.data.firstname)
     console.log("frd")
-    const idfrd=await axios({method:"get",url:`${API}/user/users/${id.id}`,headers:{"token":localStorage.getItem("token")}})
+    const idfrd=await axios({method:"get",url:`${API}/user/users/${id.id}`})
     setidfrd(idfrd.data)
 
     } catch (error) {
@@ -160,7 +160,7 @@ useEffect(()=>{
   const getmessages=async()=>{
     console.log("first")
     console.log(localStorage.getItem("token"))
-    const message=await axios({method:"get",url:`${API}/message/singlemsg/${currentchat?._id}`,headers:{token:localStorage.getItem("token")}})
+    const message=await axios({method:"get",url:`${API}/message/singlemsg/${currentchat?._id}`})
     // if(message.status===406)
     // {
     //   toast("Unauthorized activities detedted")
