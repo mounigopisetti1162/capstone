@@ -28,7 +28,7 @@ app.use(cors(x=>x
     .AllowAnyHeader()
     .AllowAnyHeader()
     .AllowCredentials()
-    .SetIsOriginAllowed(origin => true)))
+    .SetIsOriginAllowed(true)))
 // app.use(cors(x => x
 // 
 //     
