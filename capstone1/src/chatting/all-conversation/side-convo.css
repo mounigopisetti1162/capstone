@@ -37,3 +37,8 @@ object-fit: cover;
     font-size: 20px !important;
     font-weight: 500 !important;
 }
+@media all and (max-width:800px) and (min-width:60px){
+    .conversation{
+        color: aliceblue;
+    }
+}

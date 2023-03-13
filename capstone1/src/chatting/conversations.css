@@ -44,7 +44,7 @@
     
 }
 .img1{
-    margin-top: 20px;
+    margin-top: 10px;
     width: 140px;
     height: 100px;
 }
@@ -161,10 +161,10 @@ opacity: 0.9;
 .left-heading{
     font-size: x-large;
     /* box-shadow: 5px 5px 10px 20px rgb(177, 119, 231); */
-
-    color: rgb(225, 73, 222);
+font-weight: 600;
+    color: rgb(254, 55, 251);
 }
-@media all and (max-width:950px) and (min-width:750px) {
+@media all and (max-width:1000px) and (min-width:801px) {
     .chat
     {
         display: flex;
@@ -224,13 +224,14 @@ opacity: 0.9;
 
     }
     }
-    @media all and (max-width:800px){
+    @media all and (max-width:800px) and (min-width:60px){
         .chat
     {
         display: flex;
         align-items: center;
         justify-content: center;
         width: 100%;
+        color: aliceblue;
 /* overflow: scroll; */
 /* width: 100%; */
     }
@@ -250,7 +251,9 @@ opacity: 0.9;
         align-items: center;
         justify-content: center;
         width: 95% !important;
-        background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcThMLMGOWYnPm0QWMyvRtaVXgTTgKza8uRLyQ&usqp=CAU");
+        background-size: cover;
+        background-position: center;
+        background-image: url("https://images.unsplash.com/photo-1516900557549-41557d405adf?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MzB8fGFuaW1hdGlvbnxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60");
         /* background: linear-gradient(rgb(84, 225, 166),rgb(235, 235, 99)); */
     }
     .chat-t{
@@ -282,5 +285,14 @@ opacity: 0.9;
         flex: 2;
         width: 60%;
 
+    }
+    .emojies{
+        gap: 40px;
+        
+    }
+    .img1{
+        /* margin-top: 10px; */
+        width: 100px;
+        height: 80px;
     }
     }
