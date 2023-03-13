@@ -35,6 +35,9 @@ background-image: url("data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAA
         justify-content: center;
         margin-bottom: 20px;
         background-image: url("https://mir-s3-cdn-cf.behance.net/project_modules/disp/41f2ae115606005.6051ca43c30bd.jpg");
+        background-size: cover;
+        background-repeat: no-repeat;
+        object-fit: cover;
         opacity: 0.9;
 }
 .signwrapper1{
