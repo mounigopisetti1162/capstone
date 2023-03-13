@@ -35,8 +35,8 @@ const scrollref=useRef()
 
 
 useEffect(()=>{
-// socket.current=io("wss://scoket-api.onrender.com/")
-socket.current=io("http://localhost:8900")
+socket.current=io("wss://scoket-api.onrender.com/")
+// socket.current=io("http://localhost:8900")
 
 },[])
 
