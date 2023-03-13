@@ -35,7 +35,9 @@ const scrollref=useRef()
 
 
 useEffect(()=>{
-socket.current=io("wss://abiding-selective-channel.glitch.me")
+socket.current=io("wss://abiding-selective-channel.glitch.me",{headers:{
+  "user-agent":"google"
+}})
 
 },[])
 
