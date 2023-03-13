@@ -12,13 +12,8 @@ function Convo({conversations,currentuser}) {
   useEffect(()=>{
     const frdid=conversations.members.find(m=>m!==currentuser.id)
     const getuser=async ()=>{
+      console.log("sideconvoo")
       const user=await axios.get(`${API}/user/users/${frdid}`)
-      if(user.status===406)
-      {
-        toast("Unauthorized activities detedted")
-        localStorage.removeItem("token")
-        nav('/user/login')
-      }
       setuser(user.data)
       // console.log(user.data)
     }
