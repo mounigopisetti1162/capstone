@@ -29,7 +29,8 @@ const [people,setpeople]=useState()
             //   nav('/user/login')
             // }
             setpeople(user.data)
-            // console.log(user)
+            console.log(user)
+            console.log("navigationnnnn")
           }
           navuser()
         },[id.id])
