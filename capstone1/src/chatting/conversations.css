@@ -10,7 +10,7 @@
 }
 .chatting{
 
-    width: 80%;
+    width: 90%;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -40,13 +40,13 @@
     /* flex: 1; */
 }
 .emojies{
-    gap: 70px;
+    gap: 50px;
     
 }
 .img1{
     margin-top: 10px;
-    width: 140px;
-    height: 100px;
+    width: 120px;
+    height: 80px;
 }
 .chat-left-wrapper,.chat-center-wrapper,.chat-right-wrapper{
 padding: 10px;
@@ -93,13 +93,14 @@ height: 100% !important;
 .chat-info{
     /* position: absolute; */
     font-size: 50px;
-    color: rgb(194, 194, 194);
+    color: rgb(105, 96, 96);
     top: 15%;
 }
 .chat-image{
     /* position: absolute; */
     top: 30% !important;
     opacity: 0.5;
+    display: none;
 
 
 }
@@ -222,6 +223,15 @@ font-weight: 600;
         flex: 2;
         width: 60%;
 
+    }
+    .emojies{
+        gap: 40px;
+        
+    }
+    .img1{
+        /* margin-top: 10px; */
+        width: 100px;
+        height: 80px;
     }
     }
     @media all and (max-width:800px) and (min-width:60px){
