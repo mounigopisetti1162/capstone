@@ -154,7 +154,8 @@ opacity: 0.9;
     align-items: center;
     font-weight: 600;
     color: aliceblue;
-    background-color: blueviolet;
+    /* background-color: rgb(189, 166, 210); */
+    border-radius: 5px;
     /* border-top: 2px solid rgb(143, 145, 142); */
     /* background-color: brown; */
     box-shadow: 2px 2px 2px 2px rgb(212, 200, 200);
@@ -249,6 +250,9 @@ font-weight: 600;
         width: 100px;
         height: 80px;
     }
+    .friendnames{
+        background-color: blueviolet;
+    }
     }
     @media all and (max-width:800px) and (min-width:60px){
         .chat
@@ -283,6 +287,9 @@ font-weight: 600;
 
         background-image: url("https://images.unsplash.com/photo-1516900557549-41557d405adf?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MzB8fGFuaW1hdGlvbnxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60");
         /* background: linear-gradient(rgb(84, 225, 166),rgb(235, 235, 99)); */
+    }
+    .friendnames{
+        background-color: rgb(43, 195, 226);
     }
     .chat-t{
         display: flex;
