@@ -15,7 +15,7 @@ export default function Login() {
 
   const validationSchema = Yup.object().shape({
     email: Yup.string().email().required(),
-    password: Yup.string().min(8).max(50).required(),
+    password: Yup.string().min(3).max(50).required(),
     
   });
 
@@ -137,7 +137,7 @@ const renderError = (message) => <p className="help is-danger">{message}</p>;
         <Link to='/'>No Account</Link>
         <br></br>
         <br></br>
-        <Link to='/verification'>Forgot Password</Link>
+        <Link to='/user/reset-password'>Forgot Password</Link>
 
         </div>
       </Form>

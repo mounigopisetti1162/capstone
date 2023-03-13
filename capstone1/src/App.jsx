@@ -26,7 +26,7 @@ function App() {
      <Routes>
      <Route path='/'element={<Signup/>}/>
       <Route path='/user/login' element={ <Login/>}/>
-      <Route path='/user/reset-password/:id' element={<Resetpass/>}/>
+      <Route path='/user/reset-password' element={<Resetpass/>}/>
       <Route path='/user/verification'element={<Email/>}/>
       <Route path='/mail-verification/:token' element={<Otpverification/>}/>
       <Route path='/home' element={<ProtectedRoutes><Home/></ProtectedRoutes>}/>

@@ -35,9 +35,8 @@ const scrollref=useRef()
 
 
 useEffect(()=>{
-socket.current=io("wss://abiding-selective-channel.glitch.me",{headers:{
-  "user-agent":"Google"
-}})
+// socket.current=io("wss://scoket-api.onrender.com/")
+socket.current=io("http://localhost:8900")
 
 },[])
 
@@ -49,6 +48,7 @@ useEffect(()=>{
       text:data.text,
       // createdat:Date.now()
     })
+    console.log("the data")
   })
 },[])
 useEffect(()=>{
@@ -61,6 +61,7 @@ useEffect(()=>{
 
   useEffect(()=>{
  socket.current.emit("adduser",id.id)
+ console.log("this is sockent")
 //  socket.current.on("getuser",(users)=>{
 //   // console.log(users)
 //  })
