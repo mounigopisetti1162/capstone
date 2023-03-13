@@ -21,7 +21,7 @@ const Signup = () => {
     lastname: Yup.string().required(),
     password: Yup.string().min(8).max(50).required(),
     confrimpassword: Yup.string().oneOf([Yup.ref("password"), null], "Password must match")
-    .required("Confirm Password is required"),
+    ,
     profile: Yup
       .string()
       .min(10),
