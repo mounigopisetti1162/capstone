@@ -191,6 +191,14 @@ opacity: 0.9;
         justify-content: center;
     
     }
+    .chat-info{
+        font-size: 30px;
+        color: black;
+    }
+        .chat-image{
+            width: 400px !important;
+            opacity: 1;
+        }
     .chat-top{
         width: 50%;
     }
@@ -224,6 +232,17 @@ opacity: 0.9;
         width: 100%;
 /* overflow: scroll; */
 /* width: 100%; */
+    }
+    /* .message-pic{
+        width: 100px;
+    } */
+.chat-info{
+    font-size: 40px;
+    color: black;
+}
+    .chat-image{
+        width: 400px !important;
+        opacity: 1;
     }
     .chatting{
         display: flex;

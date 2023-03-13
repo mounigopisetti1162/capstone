@@ -5,7 +5,7 @@ import * as Yup from "yup";
 import { Formik, Form, Field, ErrorMessage} from "formik";
 import {  toast } from 'react-toastify';
   import 'react-toastify/dist/ReactToastify.css';
-import './signup.css'
+// import './signup.css'
 import './Login.css'
 import { API } from './global'
 export default function Login() {
