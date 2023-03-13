@@ -79,8 +79,8 @@ const renderError = (message) => <p className="help is-danger">{message}</p>;
       <div className="signwrapper">
 <div className="signup-1">
 <h3 className="loginLogo">InFiChat</h3>
-<img className="loginimage" src='  https://media.tenor.com/6pBm1sGCTnAAAAAM/excited-pikachu.gif
-' alt='name'/>
+{/* <img className="loginimage" src='  https://media.tenor.com/6pBm1sGCTnAAAAAM/excited-pikachu.gif
+' alt='name'/> */}
       </div>
       <div className="signup-2"></div>
  <Formik
