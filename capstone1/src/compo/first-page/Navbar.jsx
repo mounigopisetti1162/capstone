@@ -52,10 +52,7 @@ const [people,setpeople]=useState()
     <div className='center'>
 
     
-    <form className="d-flex form" role="search">
-      <SearchIcon className='search-icon'/>
-      <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
-    </form>
+   
 
     </div>
     {people ?

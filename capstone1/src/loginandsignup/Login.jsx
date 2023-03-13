@@ -5,24 +5,23 @@ import * as Yup from "yup";
 import { Formik, Form, Field, ErrorMessage} from "formik";
 import {  toast } from 'react-toastify';
   import 'react-toastify/dist/ReactToastify.css';
-
+import './signup.css'
+import './Login.css'
 import { API } from './global'
 export default function Login() {
 
-  const [status,setstatus]=useState('submit')
+  const [status,setstatus]=useState('Submit')
   const navigate=useNavigate()
 
   const validationSchema = Yup.object().shape({
     email: Yup.string().email().required(),
     password: Yup.string().min(3).max(50).required(),
-    confrimpassword: Yup.string().oneOf([Yup.ref("password"), null], "Password must match")
-    .required("Confirm Password is required")
+    
   });
 
   const initialValues = {
     email: "",
     password: "",
-    confrimpassword: "",
   };
   const nav=useNavigate();
 
@@ -75,7 +74,15 @@ const renderError = (message) => <p className="help is-danger">{message}</p>;
   
   return(
   <>
-  <h1>Login Page</h1>
+  <div className="sign">
+    <div className="signup">
+      <div className="signwrapper">
+<div className="signup-1">
+<h3 className="loginLogo">InFiChat</h3>
+<img className="loginimage" src='  https://media.tenor.com/6pBm1sGCTnAAAAAM/excited-pikachu.gif
+' alt='name'/>
+      </div>
+      <div className="signup-2"></div>
  <Formik
     initialValues={initialValues}
     validationSchema={validationSchema}
@@ -94,7 +101,7 @@ const renderError = (message) => <p className="help is-danger">{message}</p>;
         >
            <div className="field">
             <label className="label" htmlFor="email">
-              Email address
+              Email Address
             </label>
             <div className="control">
               <Field
@@ -120,27 +127,15 @@ const renderError = (message) => <p className="help is-danger">{message}</p>;
               <ErrorMessage name="password" render={renderError} />
             </div>
           </div>
-          <div className="field">
-            <label className="label" htmlFor="confrimpassword">
-             Confrim password
-            </label>
-            <div className="control">
-              <Field
-                name="confrimpassword"
-                type="password"
-                className="input"
-                placeholder="confrimpassword"
-              />
-              <ErrorMessage name="confrimpassword" render={renderError} />
-            </div>
-          </div>
+          
       
           <button type="submit" className="btn btn-primary" 
           >
-            Submit
+            {status}
           </button>
           <br></br>
-        <Link to='/'>Dont have Account</Link>
+        <Link to='/'>No Account</Link>
+        <br></br>
         <br></br>
         <Link to='/verification'>Forgot Password</Link>
 
@@ -149,7 +144,9 @@ const renderError = (message) => <p className="help is-danger">{message}</p>;
       </div>
       
       </Formik>
-
+      </div>
+    </div>
+    </div>
         </>
         );
 }

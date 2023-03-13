@@ -19,6 +19,8 @@ function Conversation() {
 // const user=await
 const id=useParams()
 // console.log(id)
+const [leftstatus,setleftstatus]=useState('left')
+const [right,setrigthstatus]=useState('right')
 const [people,setpeople]=useState([])
 const [frduserpeo,setfrduserpeo]=useState([])
 const [conversations,setconversations]=useState([])
@@ -234,11 +236,22 @@ const handelSubmit=async (e)=>{
     <Navbar/>
     <div className='chat'>
     <div className='chatting'>
+      <div className="chat-t">
+      <div className='chat-top'>
+    <span className='emojies'> <img className="img1" src='https://i.pinimg.com/originals/7a/96/2f/7a962f85271b11310d961b24b28148c1.gif'/>
+<img className="img1" src='https://static.vecteezy.com/system/resources/previews/004/852/438/original/emoji-couple-valentine-concept-design-3d-inlove-emojis-character-with-flower-bouquet-for-valentine-and-anniversary-celebration-emoticons-illustration-vector.jpg'/>
+<img className="img1" src='https://pic.funnygifsbox.com/uploads/2020/05/funnygifsbox.com-2020-05-04-13-06-08-82.gif'/>
+<img className="img1" src='https://i.pinimg.com/originals/aa/f7/f2/aaf7f2bb862a0004acad5bff2b08d927.gif'/>
+<img className="img1" src='https://get-talking-smileys.com/wp-content/uploads/2018/12/sticker.gif'/>
+</span>
+</div>
+<div className='chat-b'>
         <div className="chat-left">
             <div className="chat-left-wrapper">
                 {/* <input className='frds-search' placeholder='search frds'onChange={handleChange}
    value={searchInput}/> */}
    {/* <SearchBar/> */}
+   <p className='left-heading'>CHATS</p>
 
                 {conversations.map((C)=>(
                 <div onClick={()=>setcurrentchat(C)}>
@@ -304,7 +317,8 @@ const handelSubmit=async (e)=>{
         </div>
 
         </div>
-
+        </div>
+        </div>
     </div>
     </div>
     </>

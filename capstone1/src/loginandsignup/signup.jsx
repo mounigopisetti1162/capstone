@@ -11,7 +11,7 @@ import Resizer from "react-image-file-resizer";
 
 const Signup = () => {
 
-  const [status,setstatus]=useState('submit')
+  const [status,setstatus]=useState('Submit')
   const navigate=useNavigate()
   const [iteam,setiteam]=useState()
 // validations of the form
@@ -19,7 +19,7 @@ const Signup = () => {
     firstname: Yup.string().required("name is mandatary"),
     email: Yup.string().email().required(),
     lastname: Yup.string().required(),
-    password: Yup.string().min(3).max(50).required(),
+    password: Yup.string().min(8).max(50).required(),
     confrimpassword: Yup.string().oneOf([Yup.ref("password"), null], "Password must match")
     .required("Confirm Password is required"),
     profile: Yup
@@ -31,9 +31,9 @@ const [image,setimage]=useState({myfile:""})
 
   const initialValues = {
 
-    firstname: "picha",
-    lastname: "pokeamon",
-    email: "pikachu@gmail.com",
+    firstname: "",
+    lastname: "",
+    email: "",
     password: "",
     confrimpassword: "",
     profile:''
@@ -68,7 +68,6 @@ const [image,setimage]=useState({myfile:""})
   //       200
   //     );
    
-  
   // console.log(image)
   console.log("image")
 
@@ -140,7 +139,7 @@ console.log(image)
       <div className="signwrapper">
 <div className="signup-1">
 <h3 className="loginLogo">InFiChat</h3>
-<img src='https://image.shutterstock.com/image-photo/women-hand-using-smartphone-typing-260nw-1198604539.jpg' alt='name'/>
+<img className="loginimage" src='https://cdn.dribbble.com/users/1894420/screenshots/11700268/online-video-chat.gif' alt='name'/>
       </div>
       <div className="signup-2">
       <Formik
@@ -163,14 +162,14 @@ console.log(image)
   <div className="form-2">
           <div className="field">
             <label className="label" htmlFor="firstname">
-              Full name
+              First Name
             </label>
             <div className="control">
               <Field
                 name="firstname"
                 type="text"
                 className="input"
-                placeholder="Full name"
+                placeholder="Name"
                
               />
               <ErrorMessage name="firstname" render={renderError} />
@@ -180,7 +179,7 @@ console.log(image)
 
           <div className="field">
             <label className="label" htmlFor="email">
-              Email address
+              Email Address
             </label>
             <div className="control">
               <Field
@@ -196,14 +195,14 @@ console.log(image)
 
           <div className="field">
             <label className="label" htmlFor="lastname">
-            lastname
+            Last Name
             </label>
             <div className="control">
               <Field
                 name="lastname"
                 type="text"
                 className="input"
-                placeholder="Title"
+                placeholder="Last Name"
               />
               <ErrorMessage name="lastname" render={renderError} />
             </div>
@@ -212,14 +211,14 @@ console.log(image)
 
           <div className="field">
             <label className="label" htmlFor="password">
-              password
+              Password
             </label>
             <div className="control">
               <Field
                 name="password"
                 type="password"
                 className="input"
-                placeholder="password"
+                placeholder="Password"
               />
               <ErrorMessage name="password" render={renderError} />
             </div>
@@ -228,11 +227,11 @@ console.log(image)
 
           <div className="field">
             <label className="label" htmlFor="confrimpassword">
-             Confrim password
+             Confrim Password
             </label>
             <div className="control">
               <Field
-                name="confrimpassword"
+                name="Confrim Password"
                 type="password"
                 className="input"
                 placeholder="confrimpassword"
@@ -243,7 +242,7 @@ console.log(image)
 
           <div className="field">
             <label className="label" htmlFor="confrimpassword">
-             Profile Pc
+             Profile Picture
             </label>
             <div className="control">
               <img src="/images/person/no-avatar.png" alt='' className="signup-img"/>
