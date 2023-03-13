@@ -15,7 +15,7 @@ export default function Login() {
 
   const validationSchema = Yup.object().shape({
     email: Yup.string().email().required(),
-    password: Yup.string().min(3).max(50).required(),
+    password: Yup.string().min(8).max(50).required(),
     
   });
 
