@@ -41,4 +41,8 @@ object-fit: cover;
     .conversation{
         color: aliceblue;
     }
+    .conversation:hover
+{
+    color: black;
+}
 }
