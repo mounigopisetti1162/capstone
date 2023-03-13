@@ -21,7 +21,7 @@ const [people,setpeople]=useState()
 
           const navuser=async()=>{
             console.log("navi")
-            const user=await axios({method:"get",url:`${API}/user/users/${id.id}`})
+            const user=await axios({method:"get",url:`${API}/user/users/${id.id}`,headers:{"token":localStorage.getItem("token")}})
             // if(user.status===406)
             // {
             //   toast("Unauthorized activities detedted")
