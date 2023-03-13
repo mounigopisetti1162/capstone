@@ -234,6 +234,7 @@ font-weight: 600;
 
     }
     .emojies{
+        margin-top: 5px;
         gap: 40px;
         
     }
