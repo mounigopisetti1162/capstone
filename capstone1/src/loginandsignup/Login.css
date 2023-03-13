@@ -41,7 +41,7 @@ background-image: url("data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAA
         /* background-repeat: no-repeat; */
         object-fit: contain;
         opacity: 0.9;
-        height: 100vh;
+        height: 90vh;
 }
 .signwrapper1{
     display: flex;
