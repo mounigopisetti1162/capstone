@@ -20,7 +20,7 @@ const [people,setpeople]=useState()
           console.log(id.id)
 
           const navuser=async()=>{
-            
+            console.log("navi")
             const user=await axios({method:"get",url:`${API}/user/users/${id.id}`})
             // if(user.status===406)
             // {
