@@ -32,10 +32,10 @@ const [people,setpeople]=useState()
             // console.log(user)
           }
           navuser()
-        },[])
+        },[id.id])
         // console.log(people)
           const navi=()=>{
-    navigate(`/profile/${id.id}`)
+    // navigate(`/profile/${id.id}`)
     console.log("first")
   }
   // console.log(people.profile)
