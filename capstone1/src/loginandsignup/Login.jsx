@@ -74,15 +74,15 @@ const renderError = (message) => <p className="help is-danger">{message}</p>;
   
   return(
   <>
-  <div className="sign">
-    <div className="signup">
-      <div className="signwrapper">
-<div className="signup-1">
-<h3 className="loginLogo">InFiChat</h3>
+  <div className="sign1">
+    <div className="signup1">
+      <div className="signwrapper1">
+<div className="signup-11">
+<h3 className="loginLogo1">InFiChat</h3>
 {/* <img className="loginimage" src='  https://media.tenor.com/6pBm1sGCTnAAAAAM/excited-pikachu.gif
 ' alt='name'/> */}
       </div>
-      <div className="signup-2"></div>
+      <div className="signup-21"></div>
  <Formik
     initialValues={initialValues}
     validationSchema={validationSchema}
@@ -94,16 +94,16 @@ const renderError = (message) => <p className="help is-danger">{message}</p>;
     <div>
       <Form>
         <div
-          className="container"
+          className="container1"
           style={{
             width: "60%",
           }}
         >
-           <div className="field">
-            <label className="label" htmlFor="email">
+           <div className="field1">
+            <label className="label1" htmlFor="email">
               Email Address
             </label>
-            <div className="control">
+            <div className="control1">
               <Field
                 name="email"
                 type="text"
@@ -113,11 +113,11 @@ const renderError = (message) => <p className="help is-danger">{message}</p>;
               <ErrorMessage name="email" render={renderError} />
             </div>
           </div>
-          <div className="field">
-            <label className="label" htmlFor="password">
+          <div className="field1">
+            <label className="label1" htmlFor="password">
               password
             </label>
-            <div className="control">
+            <div className="control1">
               <Field
                 name="password"
                 type="password"
