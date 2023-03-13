@@ -78,31 +78,46 @@ useEffect(()=>{
 useEffect(()=>{
   const getpeople=async ()=>{
    
-      const users= await axios.get(`${API}/user/users`)
+      const users= await axios({method:"get",url:`${API}/user/users`,headers:{"token":localStorage.getItem("token")}})
+      // try {
+        
+      // } catch (error) {
+        
+      // }
+
+     
      
       // console.log("users")
+  
+        try{
+        let array =[] ;
+        users.data.forEach((e)=>array.push(e._id))
+        // console.log(array);
+        
+          // const {man}=users.data 
+          // console.log(users.data)
+          // console.log(id.id) 
+        setpeople(users.data)
+        
+      }
+      catch (error)
+      {
 
-      let array =[] ;
-      users.data.forEach((e)=>array.push(e._id))
-      // console.log(array);
-      
-        // const {man}=users.data 
-        // console.log(users.data)
-        // console.log(id.id) 
-      setpeople(users.data)
+        if(error.message==="Request failed with status code 406")
+        {
+          toast("Unauthorized activities detedted")
+          localStorage.removeItem("token")
+          nav('/user/login')
+        }
+      } 
+        
       
   
-      // console.log(error.message)
-    //   if(error.message==="Request failed with status code 406")
-    //   {
-    //     toast("Unauthorized activities detedted")
-    //     localStorage.removeItem("token")
-    //     nav('/user/login')
-    //   }
     // }
     // axios.get(`${API}/user/users`)
     // .then((res)=>console.log(res.data[0]._id))
     // .catch((err)=>console.log(err))
+  
   }
 
 
@@ -142,12 +157,12 @@ useEffect(()=>
     console.log(receiverid)
     try {
       
-      const frd=await axios.get(`${API}/user/users/${receiverid}`)
+      const frd=await axios({method:"get",url:`${API}/user/users/${receiverid}`,headers:{"token":localStorage.getItem("token")}})
           setfrduserpeo(frd.data)
           setfriendname(frd.data.firstname)
           console.log(frd.data.firstname)
     console.log("frd")
-    const idfrd=await axios.get(`${API}/user/users/${id.id}`)
+    const idfrd=await axios({method:"get",url:`${API}/user/users/${id.id}`,headers:{"token":localStorage.getItem("token")}})
     setidfrd(idfrd.data)
 
     } catch (error) {
@@ -165,7 +180,7 @@ useEffect(()=>{
   const getmessages=async()=>{
     console.log("first")
     console.log(localStorage.getItem("token"))
-    const message=await axios({method:"get",url:`${API}/message/singlemsg/${currentchat?._id}`,headers:{token:localStorage.getItem("token")}})
+    const message=await axios({method:"get",url:`${API}/message/singlemsg/${currentchat?._id}`,headers:{"token":localStorage.getItem("token")}})
     // if(message.status===406)
     // {
     //   toast("Unauthorized activities detedted")

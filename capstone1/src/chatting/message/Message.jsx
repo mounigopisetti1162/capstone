@@ -21,7 +21,7 @@ useEffect(()=>
 
   const frduser=async ()=>{
     console.log("first")
-    const frd=await axios({method:"get",url:`${API}/user/users/${sender}`})
+    const frd=await axios({method:"get",url:`${API}/user/users/${sender}`,headers:{"token":localStorage.getItem("token")}})
     setfriend(frd.data)
     // console.log(frd.data)
   }
