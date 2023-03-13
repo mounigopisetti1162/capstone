@@ -194,8 +194,17 @@ font-weight: 600;
     
     }
     .chat-info{
-        font-size: 30px;
-        color: black;
+        /* position: absolute; */
+        font-size: 40px;
+        color: rgb(105, 96, 96);
+        top: 15%;
+    }
+    .chat-image{
+        /* position: absolute; */
+        top: 30% !important;
+        opacity: 0.5;
+    
+    
     }
         .chat-image{
             width: 400px !important;
@@ -286,6 +295,7 @@ font-weight: 600;
     }
     .chat-info{
         font-size: 30px;
+        font-weight: 600;
         color: rgb(211, 201, 201);
     }
     .chat-right{
