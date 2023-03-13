@@ -31,7 +31,7 @@ router.get('/users',auth,async function(request,responce)
     // console.log(user);
     responce.send(user)
 })
-router.get('/users/:id',auth,async function(request,responce)
+router.get('/users/:id',async function(request,responce)
 {
     console.log("first")
     const {id}=request.params
@@ -185,7 +185,7 @@ responce.send({message:'we will reset the password'})
     }
 })
 
-router.post(`/reset-passwordss`,async function(request,responce)
+router.post(`/reset-password`,async function(request,responce)
 {
     // console.log("this is the reset page")
     const {email,password}=request.body

@@ -25,7 +25,9 @@ background-image: url("data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAA
     display: flex;
     border-radius: 10px;
     /* border: 1px solid gray; */
-    font-size: 18px;
+    color: azure;
+    font-size: 20px;
+    font-weight: 800;
     padding-left: 20px;
     margin-top: 40px;
     align-items: center;
@@ -36,7 +38,7 @@ background-image: url("data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAA
         margin-bottom: 20px;
         background-image: url("https://mir-s3-cdn-cf.behance.net/project_modules/disp/41f2ae115606005.6051ca43c30bd.jpg");
         background-size: cover;
-        background-repeat: no-repeat;
+        /* background-repeat: no-repeat; */
         object-fit: contain;
         opacity: 0.9;
 }
@@ -135,8 +137,8 @@ Form{
 
     }
     .loginLogo1{
-        font-size: 40px;
-        background-image:url("") ;
+        font-size: 50px !important;
+        margin-right: 20px !important;
     }
     .loginimage1{
         display: none !important;

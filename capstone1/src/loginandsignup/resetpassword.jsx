@@ -16,7 +16,7 @@ const onSubmit=(values)=>{
 }).then((data)=> data.json()).then((data)=>{
         console.log(data)
         toast("chaned sucessfully")
-        nav('/login')
+        nav('/user/login')
     })
 // console.log(values)
   }

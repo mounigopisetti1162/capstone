@@ -115,7 +115,7 @@ const renderError = (message) => <p className="help is-danger">{message}</p>;
           </div>
           <div className="field1">
             <label className="label1" htmlFor="password">
-              password
+              Password
             </label>
             <div className="control1">
               <Field

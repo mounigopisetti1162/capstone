@@ -12,7 +12,7 @@ function Convo({conversations,currentuser}) {
   useEffect(()=>{
     const frdid=conversations.members.find(m=>m!==currentuser.id)
     const getuser=async ()=>{
-      const user=await axios({method:"get",url:`${API}/user/users/${frdid}`,headers:{"token":localStorage.getItem("token")}})
+      const user=await axios.get(`${API}/user/users/${frdid}`)
       if(user.status===406)
       {
         toast("Unauthorized activities detedted")

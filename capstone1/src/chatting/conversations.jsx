@@ -77,22 +77,22 @@ useEffect(()=>{
 
 useEffect(()=>{
   const getpeople=async ()=>{
-   
-      const users= await axios({method:"get",url:`${API}/user/users`,headers:{"token":localStorage.getItem("token")}}).then((data)=>
+   console.log("second")
+      await axios({method:"get",url:`${API}/user/users`,headers:{"token":localStorage.getItem("token")}}).then((data)=>
       {
         
         let array =[] ;
-        users.data.forEach((e)=>array.push(e._id))
-        // console.log(array);
+        data.data.forEach((e)=>array.push(e._id))
+        console.log(array);
         
           // const {man}=users.data 
           // console.log(users.data)
           // console.log(id.id) 
-        setpeople(users.data)
+        setpeople(data.data)
         
       }).catch ((error)=>{
 
-        console.log(error.message)
+        console.log(error)
                 if(error.message==="Request failed with status code 406")
                 {
                   toast("Unauthorized activities detedted")
@@ -149,12 +149,12 @@ useEffect(()=>
     console.log(receiverid)
     try {
       
-      const frd=await axios({method:"get",url:`${API}/user/users/${receiverid}`,headers:{"token":localStorage.getItem("token")}})
+      const frd=await axios.get(`${API}/user/users/${receiverid}`)
           setfrduserpeo(frd.data)
           setfriendname(frd.data.firstname)
           console.log(frd.data.firstname)
     console.log("frd")
-    const idfrd=await axios({method:"get",url:`${API}/user/users/${id.id}`,headers:{"token":localStorage.getItem("token")}})
+    const idfrd=await axios.get(`${API}/user/users/${id.id}`)
     setidfrd(idfrd.data)
 
     } catch (error) {
