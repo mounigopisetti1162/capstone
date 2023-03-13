@@ -78,18 +78,9 @@ useEffect(()=>{
 useEffect(()=>{
   const getpeople=async ()=>{
    
-      const users= await axios({method:"get",url:`${API}/user/users`,headers:{"token":localStorage.getItem("token")}})
-      // try {
+      const users= await axios({method:"get",url:`${API}/user/users`,headers:{"token":localStorage.getItem("token")}}).then((data)=>
+      {
         
-      // } catch (error) {
-        
-      // }
-
-     
-     
-      // console.log("users")
-  
-        try{
         let array =[] ;
         users.data.forEach((e)=>array.push(e._id))
         // console.log(array);
@@ -99,17 +90,18 @@ useEffect(()=>{
           // console.log(id.id) 
         setpeople(users.data)
         
-      }
-      catch (error)
-      {
-console.log(error.message)
-        if(error.message==="Request failed with status code 406")
-        {
-          toast("Unauthorized activities detedted")
-          localStorage.removeItem("token")
-          nav('/user/login')
-        }
-      } 
+      }).catch ((error)=>{
+
+        console.log(error.message)
+                if(error.message==="Request failed with status code 406")
+                {
+                  toast("Unauthorized activities detedted")
+                  localStorage.removeItem("token")
+                  nav('/user/login')
+                }
+      })
+      
+      
         
       
   
