@@ -277,6 +277,8 @@ font-weight: 600;
         width: 95% !important;
         background-size: cover;
         background-position: center;
+        object-fit: cover;
+
         background-image: url("https://images.unsplash.com/photo-1516900557549-41557d405adf?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MzB8fGFuaW1hdGlvbnxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60");
         /* background: linear-gradient(rgb(84, 225, 166),rgb(235, 235, 99)); */
     }
