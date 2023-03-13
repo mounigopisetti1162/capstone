@@ -50,6 +50,7 @@
 .img1{
     width: 120px;
     height: 80px;
+    border-radius: 50%;
 }
 .chat-left-wrapper,.chat-center-wrapper,.chat-right-wrapper{
 padding: 10px;
