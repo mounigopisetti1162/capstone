@@ -41,10 +41,10 @@
 }
 .emojies{
     gap: 50px;
+    margin-top: 10px;
     
 }
 .img1{
-    margin-top: 10px;
     width: 120px;
     height: 80px;
 }
@@ -234,8 +234,8 @@ font-weight: 600;
 
     }
     .emojies{
-        margin-top: 5px;
         gap: 40px;
+        margin-top: 10px;
         
     }
     .img1{
