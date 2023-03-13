@@ -223,7 +223,7 @@ opacity: 0.9;
 
     }
     }
-    @media all and (max-width:800px) and (min-width:100px) {
+    @media all and (max-width:800px){
         .chat
     {
         display: flex;
