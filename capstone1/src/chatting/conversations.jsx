@@ -102,7 +102,7 @@ useEffect(()=>{
       }
       catch (error)
       {
-
+console.log(error)
         if(error.message==="Request failed with status code 406")
         {
           toast("Unauthorized activities detedted")
