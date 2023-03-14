@@ -64,7 +64,7 @@ let mailtransporter=nodemailer.createTransport({
         subject:subject,
         text:text
     })
-    console.log("email sent sucessfully")
+    console.log(email)
     } catch (error) {
         console.log("the mail is not sent",error)
     }

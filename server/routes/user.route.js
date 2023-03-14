@@ -17,7 +17,7 @@ const hashotp=await generatehashedpassword(otp)
 
 const token2=randomstring.generate(15);
 const link=`${process.env.BASE_URL}/mail-verification/${token2}`
-
+console.log(link)
    const verification_otp=`<p> enter the ${otp} in the app to do the verification process  enter in this ${link}</p>`
    // this objectid need to be chnaged from new ObjectId to general number
 await mail(email,'verification mail',verification_otp)
@@ -47,12 +47,12 @@ router.post('/signup',async function(req,res)
     const {firstname,email,lastname,password,confrimpassword,profile}=req.body;
     const found=await getuser(email)
     // console.log(found)
-    if(found)
-    {
-        console.log("not")
-        res.status(401).send({message:"user alredy exist"})
-    }
-    else{
+    // if(found)
+    // {
+    //     console.log("not")
+    //     res.status(401).send({message:"user alredy exist"})
+    // }
+    // else{
     const hashpassword=await generatehashedpassword(password)
     // const hashpassword2=await generatehashedpassword(confrimpassword)
       //  db.movies.insertMany(data)
@@ -66,7 +66,7 @@ router.post('/signup',async function(req,res)
     const token=jwt.sign({id:id},process.env.SCRETE_TOKEN)
     // console.log(newuser.insertedId.toString())
       res.send({message:"signup processs",token:token})
-    }
+    // }
 })
 
 router.post('/otpverification/:token',async function (request,responce)
