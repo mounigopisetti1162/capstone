@@ -2,7 +2,7 @@ import React from 'react'
 import { API } from "./global";
 import * as Yup from "yup";
 import {  toast } from 'react-toastify';
-
+import './otpverification.css'
 import { Formik, Form, Field, ErrorMessage} from "formik";
 import { useNavigate, useParams } from "react-router-dom";
 function Otpverification() {
@@ -46,6 +46,11 @@ const renderError = (message) => <p className="help is-danger">{message}</p>;
 
 
   return (
+    <>
+    <div className="otpverification">
+      <div className="otp">
+
+      
     <Formik
     initialValues={initialValues}
     validationSchema={validationSchema}
@@ -85,6 +90,9 @@ const renderError = (message) => <p className="help is-danger">{message}</p>;
       </div>
       
       </Formik>
+      </div>
+    </div>
+      </>
   )
 }
 

@@ -4,6 +4,7 @@ import * as Yup from "yup";
 import { Formik, Form, Field, ErrorMessage} from "formik";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import './resetpassword.css'
 export default function Resetpass()
 {
    const nav=useNavigate()
@@ -37,8 +38,12 @@ const renderError = (message) => <p className="help is-danger">{message}</p>;
 
     return(
         <>
-        <h1> forgot-password</h1>
-        <Formik
+        <div className="password">
+          <div className="pass">
+
+          
+        <h1> Forgot Password</h1>
+        <Formik 
     initialValues={initialValues}
     validationSchema={validationSchema}
     onSubmit={values => {
@@ -56,7 +61,7 @@ const renderError = (message) => <p className="help is-danger">{message}</p>;
         >
             <div className="field">
             <label className="label" htmlFor="email">
-              Email address
+              Email Address
             </label>
             <div className="control">
               <Field
@@ -72,7 +77,7 @@ const renderError = (message) => <p className="help is-danger">{message}</p>;
            
           <div className="field">
             <label className="label" htmlFor="password">
-              password
+              Password
             </label>
             <div className="control">
               <Field
@@ -86,7 +91,7 @@ const renderError = (message) => <p className="help is-danger">{message}</p>;
           </div>
           <div className="field">
             <label className="label" htmlFor="confrimpassword">
-             Confrim password
+             Confrim Password
             </label>
             <div className="control">
               <Field
@@ -108,6 +113,8 @@ const renderError = (message) => <p className="help is-danger">{message}</p>;
       </div>
       
       </Formik>
+      </div>
+        </div>
       </>
             
     )

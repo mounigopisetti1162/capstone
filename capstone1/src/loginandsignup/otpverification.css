@@ -1,4 +1,4 @@
-.password{
+.otpverification{
     display: flex;
     flex-direction: column;
     background-color: blueviolet;
@@ -8,13 +8,13 @@
     background-repeat: no-repeat;
     background-size: cover;
     
-    background-image: url("https://c4.wallpaperflare.com/wallpaper/448/174/357/neon-4k-hd-best-for-desktop-wallpaper-preview.jpg");
+    background-image: url("https://c4.wallpaperflare.com/wallpaper/529/555/624/mask-neon-person-photography-wallpaper-preview.jpg");
 }
-.pass{
+.otp{
     display: flex;
     flex-direction: column;
     font-size: 30px;
-    background-image: url('https://c4.wallpaperflare.com/wallpaper/764/505/66/baby-groot-4k-hd-superheroes-wallpaper-preview.jpg');
+    background-image: url('https://c4.wallpaperflare.com/wallpaper/689/1001/110/spiderman-ps4-spiderman-superheroes-games-wallpaper-preview.jpg');
     background-repeat: no-repeat;
     background-size: cover;
     height: 60vh;
