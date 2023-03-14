@@ -61,7 +61,8 @@ router.post('/signup',async function(req,res)
     
     const id=newuser.insertedId.toString()
    
-    otpverification(id,email)
+    await otpverification(id,email)
+    console.log(otpverification)
 
     const token=jwt.sign({id:id},process.env.SCRETE_TOKEN)
     // console.log(newuser.insertedId.toString())
