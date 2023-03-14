@@ -36,7 +36,7 @@ const scrollref=useRef()
 
 useEffect(()=>{
 // socket.current=io('https://scoket-api.onrender.com:8901', 
-socket.current=io("http://localhost:8901", 
+socket.current=io("http://localhost:4000", 
 {
   // var socket = io('http://[serverip]:3000');
 
