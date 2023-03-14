@@ -35,10 +35,11 @@ const scrollref=useRef()
 
 
 useEffect(()=>{
-socket.current=io(`wss://scoket-api.onrender.com:8901`, 
+socket.current=io('http://scoket-api.onrender.com:8901', 
 // socket.current=io("wss://localhost:8901", 
-
 {
+  // var socket = io('http://[serverip]:3000');
+
   withCredentials: true,
   extraHeaders: {
     "my-custom-header": "abcd"
