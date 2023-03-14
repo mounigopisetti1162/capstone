@@ -35,8 +35,17 @@ const scrollref=useRef()
 
 
 useEffect(()=>{
-socket.current=io("wss://scoket-api.onrender.com/")
+// socket.current=io("https://scoket-api.onrender.com/", 
+socket.current=io("http://localhost:8901", 
+
+{
+  withCredentials: true,
+  extraHeaders: {
+    "my-custom-header": "abcd"
+  }
+})
 // socket.current=io("http://localhost:8900")
+console.log("scoket connection")
 
 },[])
 
