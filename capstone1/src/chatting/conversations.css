@@ -22,7 +22,8 @@
     background-repeat: no-repeat;
     /* background-position: center; */
     background-color: rgb(255, 255, 255);
-    overflow-y: scroll;
+    /* overflow-y: scroll; */
+    overflow: scroll;
     /* align-items: center; */
     /* justify-content: center; */
     /* background-color: rgb(143, 88, 21) !important; */
@@ -46,6 +47,7 @@
 .emojies{
     gap: 50px;
     margin-top: 10px;
+    position: sticky;
     
 }
 .img1{
