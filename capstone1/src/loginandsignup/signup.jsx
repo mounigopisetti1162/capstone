@@ -56,6 +56,8 @@ const handelfileupload= async (e)=>{
   }
 }
 console.log(image)
+console.log(image.myfile)
+
 
 const resizeFile = (file) =>
   new Promise((resolve) => {
@@ -98,7 +100,7 @@ const resizeFile = (file) =>
     }
     setstatus("submited");
     navigate("/user/login")
-    console.log(data)
+    console.log(data.profile.myfile.Promise)
 
     toast("verify- Mail has been sent")    
     //adding token to the local storage
