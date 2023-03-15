@@ -72,9 +72,12 @@ useEffect(()=>{
   useEffect(()=>{
  socket.current.emit("adduser",id.id)
  console.log("this is sockent")
-//  socket.current.on("getuser",(users)=>{
-//   // console.log(users)
-//  })
+ socket.current.on("getuser",(users)=>{
+  console.log("the first user nmisfhdhjsbfd")
+  console.log(users)
+  console.log("the get msg")
+  // console.log(users)
+ })
   },[id.id])
 
   // useEffect(()=>{
@@ -93,7 +96,7 @@ useEffect(()=>{
         
         let array =[] ;
         data.data.forEach((e)=>array.push(e._id))
-        console.log(array);
+        // console.log(array);
         
           // const {man}=users.data 
           // console.log(users.data)
@@ -181,7 +184,7 @@ frduser()
 useEffect(()=>{
   const getmessages=async()=>{
     console.log("first")
-    console.log(localStorage.getItem("token"))
+    // console.log(localStorage.getItem("token"))
     const message=await axios({method:"get",url:`${API}/message/singlemsg/${currentchat?._id}`,headers:{"token":localStorage.getItem("token")}})
     // if(message.status===406)
     // {
@@ -216,8 +219,8 @@ const handelSubmit=async (e)=>{
   }
   const receiverid=currentchat.members.find((member)=>member!==id.id);
   console.log(receiverid)
-
-  socket.current.emit("sendmessage",{
+console.log(id.id)
+   socket.current.emit("sendmessage",{
     senderid:id.id,
     receiverid:receiverid,
     text:newmessage
