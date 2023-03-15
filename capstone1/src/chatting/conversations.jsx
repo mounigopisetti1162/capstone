@@ -148,7 +148,7 @@ useEffect(()=>{
     getpeople()
     getconversations()
     // frduser(id,currentchat)
-},[id.id])
+},[id.id,currentchat])
 // console.log(people)
 const[friendname,setfriendname]=useState("")
 const[idfrd,setidfrd]=useState("")
@@ -176,7 +176,7 @@ useEffect(()=>
     }
 }
 frduser()
-},[currentchat])
+},[currentchat,newmessage])
 // console.log("first")
 // console.log(idfrd)
 // console.log("second")
