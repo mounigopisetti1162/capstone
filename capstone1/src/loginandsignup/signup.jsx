@@ -40,47 +40,16 @@ const [image,setimage]=useState({myfile:""})
 
   };
 
-// on submitting the valiadation and passing to the backend
 
-
-
-
-  // var fileInput = false;
-  // if (e.target.files[0]) {
-  //   fileInput = true;
-  // }
-  // if (fileInput) {
-    
-  //     Resizer.imageFileResizer(
-  //       e.target.files[0],
-  //       300,
-  //       300,
-  //       "JPEG",
-  //       100,
-  //       0,
-  //       (uri) => {
-  //         console.log(uri);
-  //         setimage({myfile:uri });
-  //         console.log(image)
-  //       },
-  //       "base64",
-  //       200,
-  //       200
-  //     );
-   
-  // console.log(image)
   console.log("image")
 
-//  const file=e.target.files[0];
-//  const base64=await converttobase64(file)
-//  console.log(base64)
-//  setimage({myfile:base64})
+
 
 const handelfileupload= async (e)=>{
 
   try {
     const file = e.target.files[0];
-    const image = await resizeFile(file);
+    const image = resizeFile(file);
     setimage({myfile:image})
     console.log(image);
   } catch (err) {
@@ -307,16 +276,3 @@ const resizeFile = (file) =>
     );
   });
 
-function converttobase64(file)
-{
-return new Promise((resolve,reject)=>{
-  const fileReader=new FileReader()
-  fileReader.readAsDataURL(file)
-  fileReader.onload=()=>{
-    resolve(fileReader.result)
-  }
-  fileReader.onerror=(err)=>{
-    reject(err)
-  }
-})
-}
