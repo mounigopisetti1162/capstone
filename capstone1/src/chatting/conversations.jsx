@@ -48,7 +48,7 @@ socket.current=io("https://socket-server-api.onrender.com",
 // socket.current=io("http://localhost:8900")
 console.log("scoket connection")
 
-},[])
+},[currentchat])
 
 useEffect(()=>{
   console.log("get msg")
