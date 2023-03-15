@@ -1,7 +1,7 @@
 .chat{
     display: flex;
     width: 100%;
-    height: calc(100vh - 5rem) !important;
+    height: calc(100% - 5rem) !important;
 
     align-items: center;
     justify-content: center;
@@ -23,7 +23,7 @@
     /* background-position: center; */
     background-color: rgb(255, 255, 255);
     /* overflow-y: scroll; */
-    overflow: scroll;
+    overflow-y: scroll;
     /* align-items: center; */
     /* justify-content: center; */
     /* background-color: rgb(143, 88, 21) !important; */
@@ -47,7 +47,8 @@
 .emojies{
     gap: 50px;
     margin-top: 10px;
-    position: sticky;
+    /* position: sticky; */
+    top: 30%;
     
 }
 .img1{
