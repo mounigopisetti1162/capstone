@@ -17,7 +17,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 100% !important;
+    /* height: 100% !important; */
     background-image:url("https://img.pikbest.com/png-images/qiantu/anime-hand-painted-two-dimensional-couple-chatting-and-wechat-dialogue-cartoon-love_2595963.png!w700wp");
     background-repeat: no-repeat;
     /* background-position: center; */
