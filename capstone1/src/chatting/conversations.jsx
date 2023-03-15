@@ -243,17 +243,6 @@ console.log(id.id)
 }
 
 
-
-// console.log(receiverid)
-// console.log()
-// console.log("urrentchat)")
-
-// console.log(currentchat._id)
-// console.log(message)
-// console.log(currentchat)
-
-
-
   return (
     <>
     <Navbar/>
