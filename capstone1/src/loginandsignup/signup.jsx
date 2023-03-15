@@ -7,8 +7,7 @@ import FileBase64 from 'react-file-base64';
 import { Formik, Form, Field, ErrorMessage} from "formik";
 import './signup.css'
 import axios from "axios";
-import Resizer from "react-image-file-resizer";
-
+import Resizer from "./Resizer";
 const Signup = () => {
 
   const [status,setstatus]=useState('Submit')
@@ -57,6 +56,22 @@ const handelfileupload= async (e)=>{
   }
 }
 console.log(image)
+
+const resizeFile = (file) =>
+  new Promise((resolve) => {
+    Resizer.imageFileResizer(
+      file,
+      300,
+      300,
+      "JPEG",
+      100,
+      0,
+      (uri) => {
+        resolve(uri);
+      },
+      "base64"
+    );
+  });
   const onSubmit = (values) => {
 
     console.log("submited")
@@ -260,19 +275,5 @@ console.log(image)
 
 export default Signup;
 
-const resizeFile = (file) =>
-  new Promise((resolve) => {
-    Resizer.imageFileResizer(
-      file,
-      300,
-      300,
-      "JPEG",
-      100,
-      0,
-      (uri) => {
-        resolve(uri);
-      },
-      "base64"
-    );
-  });
+
 
