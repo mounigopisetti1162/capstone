@@ -49,14 +49,17 @@ const handelfileupload= async (e)=>{
   try {
     const file = e.target.files[0];
     const image = resizeFile(file);
-    setimage({myfile:image})
+    image.then((data)=>data).then(data=>setimage({myfile:data}))
+    //   function (value) {myimage(value)}
+    // )
+    // setimage({myfile:image})
     console.log(image);
   } catch (err) {
     console.log(err);
   }
 }
 console.log(image)
-console.log(image.myfile)
+// console.log(image.myfile[0])
 
 
 const resizeFile = (file) =>
