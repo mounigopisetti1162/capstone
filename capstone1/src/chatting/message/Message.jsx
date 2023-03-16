@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { API } from '../../loginandsignup/global'
+import {format} from 'timeago.js'
 
 import './Message.css'
 import axios from 'axios'
@@ -31,7 +32,7 @@ useEffect(()=>
     
     }
 <p className='message-text'>{message.text}  </p> </div>
-    <div className="message-bottom">
+    <div className="message-bottom">{format(message.createdAt)}
 
     </div>
     </div>
