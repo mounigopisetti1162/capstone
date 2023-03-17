@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Satisfy&family=Tilt+Prism&display=swap');
+
 .profile{
     display: flex;
     align-items: center;
@@ -19,6 +21,10 @@
 .loginLogo-p
 {
     font-size: 100px;
+    font-weight: 800;
+    color: blueviolet;
+    margin-bottom: 10px;
+font-family: 'Tilt Prism', cursive;
 }
 .profile-2{
     background-color: rgb(181, 126, 233);
