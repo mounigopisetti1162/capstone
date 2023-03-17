@@ -44,5 +44,9 @@ export const resetpassword=(values)=>{
 
 }
 
+export const forgetpass=()=>{
+    return axios.post(`${API}/user/forgotpass`)
+}
+
   
 

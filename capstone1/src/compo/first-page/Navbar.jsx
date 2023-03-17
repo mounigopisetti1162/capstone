@@ -24,9 +24,8 @@ const [people,setpeople]=useState()
           }
           navuser()
         },[id.id])
-          
-        const navi=()=>{
-          console.log("navbar")
+          const navi=()=>{
+            console.log("navigation")
     navigate(`/profile/${id.id}`)
   }
   
