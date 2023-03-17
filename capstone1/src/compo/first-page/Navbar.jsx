@@ -30,8 +30,9 @@ const [people,setpeople]=useState()
           }
           navuser()
         },[id.id])
-          const navi=()=>{
-    navigate(`/profile/${id.id}`)
+        const navi=()=>{
+          navigate(`/profile/${id.id}`)
+          console.log("first")
     // console.log("first")
   }
   

@@ -274,7 +274,7 @@ const handelSubmit=async (e)=>{
             <textarea placeholder='enter text' className='message-input' onChange={(e)=>setnewmessage(e.target.value)} value={newmessage}>
 
             </textarea>
-            <button className='send-button' onClick={handelSubmit}>send</button>
+            <button className='send-button' onClick={handelSubmit} >send</button>
            
           </div>
           </>
