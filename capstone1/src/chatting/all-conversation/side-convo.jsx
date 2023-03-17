@@ -13,7 +13,7 @@ function Convo({conversations,currentuser}) {
   useEffect(()=>{
     const frdid=conversations.members.find(m=>m!==currentuser.id)
     const getuser=async ()=>{
-      console.log("sideconvoo")
+      // console.log("sideconvoo")
       //axios calling
 
       const user= await getuserbyid(frdid)

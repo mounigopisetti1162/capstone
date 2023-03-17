@@ -27,10 +27,10 @@ export default function Login() {
 
 
 const onSubmit=(values)=>{
-  console.log("submited")
+  // console.log("submited")
 
   setstatus('loding..') 
-  console.log(values)
+  // console.log(values)
   fetch(`${API}/user/login`,{
     method:'POST',
     body:JSON.stringify(values),
@@ -56,7 +56,8 @@ else if(data.status===402)
 }
 
 return data.json();})
-.then((data)=>{console.log(data);
+.then((data)=>{
+  // console.log(data);
 // localStorage.setItem('token',data.token);
 if(data.message==="logged in sucessfully")
 {
@@ -66,7 +67,8 @@ toast("Logged in sucessfully")
 localStorage.setItem('token',data.token);
 }
 })
-.catch((err)=>{console.log(err);
+.catch((err)=>{
+  // console.log(err);
 toast("inalid credentials")})
 }
 
@@ -88,7 +90,7 @@ const renderError = (message) => <p className="help is-danger">{message}</p>;
     validationSchema={validationSchema}
     onSubmit={values => {
        onSubmit(values);
-      console.log(values)
+      // console.log(values)
     }}
   >
     <div>

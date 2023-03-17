@@ -11,16 +11,16 @@ export default function Email()
     const nav=useNavigate()
 
     const onSubmit=(values)=>{
-      console.log(values);
+      // console.log(values);
      forgetpass().then((data)=> data.json()).then((data)=>{
       toast("Link Sent to mail")
-      console.log(data);
+      // console.log(data);
       // nav("/login")
     }).catch((err)=>{
-      console.log(err)
+      // console.log(err)
       toast("Error in  mail")
     })
-        console.log(values);
+        // console.log(values);
   
     }
 
@@ -38,7 +38,7 @@ return(
     validationSchema={validationSchema}
     onSubmit={values => {
        onSubmit(values);
-      console.log(values)
+      // console.log(values)
     }}
   >
     <div>

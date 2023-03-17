@@ -10,9 +10,9 @@ export default function Resetpass()
 {
    const nav=useNavigate()
 const onSubmit=(values)=>{
-    console.log("data")
+    // console.log("data")
     resetpassword(values).then((data)=>{
-        console.log(data)
+        // console.log(data)
         toast("chaned sucessfully")
         nav('/user/login')
     })

@@ -10,13 +10,13 @@ function Otpverification() {
   const tokens=useParams()
   const token=tokens.token
     const onSubmit=(values)=>{
-        console.log("data")
+        // console.log("data")
         fetch(`${API}/user/otpverification/${token}`,{
         method:"POST",
         body:JSON.stringify(values),
         headers:{"Content-type":"application/json"},
     }).then((data)=>{
-      console.log("data")
+      // console.log("data")
     if(data.status===403)
     {
       toast('otp has expired')
@@ -29,7 +29,7 @@ function Otpverification() {
     return data.json()}).then((data)=>{
       if(data.message==='the verification is done')
       {
-            console.log(data)
+            // console.log(data)
             toast("verified")
             nav('/user/login')
       }
@@ -56,7 +56,7 @@ const renderError = (message) => <p className="help is-danger">{message}</p>;
     validationSchema={validationSchema}
     onSubmit={values => {
        onSubmit(values);
-      console.log(values)
+      // console.log(values)
     }}
   >
     <div>

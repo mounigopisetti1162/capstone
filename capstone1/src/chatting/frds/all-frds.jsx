@@ -21,15 +21,15 @@ function Allfrds({people,id,setcurrentchat}) {
 const nav=useNavigate()
 const handelclick=async(people)=>{
 
-console.log(id.id)
-console.log(people._id)
+// console.log(id.id)
+// console.log(people._id)
 //axios calling
 const existing=await conversation_frd_user(id.id,people._id)
 
 if(existing.data[0]!==undefined)
 {
   setcurrentchat(existing.data[0])
-  console.log(existing.data)
+  // console.log(existing.data)
 }
 else{
 const members={recid:id.id,senid:people._id}
@@ -49,7 +49,7 @@ const getconversation=async()=>
     }
 
     setcurrentchat(res.data)
-    console.log(res)
+    // console.log(res)
   } catch (error) {
     
   }

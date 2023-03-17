@@ -52,14 +52,14 @@ console.log("scoket connection")
 },[currentchat])
 
 useEffect(()=>{
-  console.log("get msg")
+  // console.log("get msg")
   socket.current.on("getmessage",(data)=>{
     setarrival({
       sender:data.senderid,
       text:data.text,
       // createdat:Date.now()
     })
-    console.log("the data")
+    // console.log("the data")
   })
 },[])
 useEffect(()=>{
@@ -72,11 +72,11 @@ useEffect(()=>{
 
   useEffect(()=>{
  socket.current.emit("adduser",id.id)
- console.log("this is sockent")
+//  console.log("this is sockent")
  socket.current.on("getuser",(users)=>{
-  console.log("the first user nmisfhdhjsbfd")
-  console.log(users)
-  console.log("the get msg")
+  // console.log("the first user nmisfhdhjsbfd")
+  // console.log(users)
+  // console.log("the get msg")
   // console.log(users)
  })
   },[id.id])
@@ -87,7 +87,7 @@ useEffect(()=>{
 
 useEffect(()=>{
   const getpeople=async ()=>{
-   console.log("second")
+  //  console.log("second")
       await getalluser_with_headers(API).then((data)=>
       {
         
@@ -98,7 +98,7 @@ useEffect(()=>{
         
       }).catch ((error)=>{
 
-        console.log(error)
+        // console.log(error)
                 if(error.message==="Request failed with status code 406")
                 {
                   toast("Unauthorized activities detedted")
@@ -132,22 +132,22 @@ useEffect(()=>
 {
 
   const frduser=async ()=>{
-    console.log("hello")
-    console.log(currentchat)
+    // console.log("hello")
+    // console.log(currentchat)
     const receiverid=currentchat.members.find((member)=>member!==id.id);
-    console.log(receiverid)
+    // console.log(receiverid)
     try {
       
       const frd=await getuserbyid(receiverid)
           setfrduserpeo(frd.data)
           setfriendname(frd.data.firstname)
-          console.log(frd.data.firstname)
-    console.log("frd")
+    //       console.log(frd.data.firstname)
+    // console.log("frd")
     const idfrd=await getuserbyid(id.id)
     setidfrd(idfrd.data)
 
     } catch (error) {
-      console.log(error)
+      // console.log(error)
       
     }
 }
@@ -156,7 +156,7 @@ frduser()
 
 useEffect(()=>{
   const getmessages=async()=>{
-    console.log("first")
+    // console.log("first")
     // console.log(localStorage.getItem("token"))
     const message=await conversation_singlemsg_id(currentchat)
   
@@ -188,8 +188,8 @@ const handelSubmit=async (e)=>{
     text:newmessage
   }
   const receiverid=currentchat.members.find((member)=>member!==id.id);
-  console.log(receiverid)
-console.log(id.id)
+//   console.log(receiverid)
+// console.log(id.id)
    socket.current.emit("sendmessage",{
     senderid:id.id,
     receiverid:receiverid,
@@ -205,7 +205,7 @@ console.log(id.id)
     setmessage([...message,res.data])
     setnewmessage("")
   } catch (error) {
-    console.log(error)
+    // console.log(error)
     
   }
 }

@@ -41,7 +41,7 @@ const [image,setimage]=useState({myfile:""})
   };
 
 
-  console.log("image")
+  // console.log("image")
 
 
 
@@ -54,12 +54,12 @@ const handelfileupload= async (e)=>{
     //   function (value) {myimage(value)}
     // )
     // setimage({myfile:image})
-    console.log(image);
+    // console.log(image);
   } catch (err) {
-    console.log(err);
+    // console.log(err);
   }
 }
-console.log(image)
+// console.log(image)
 // console.log(image.myfile[0])
 
 
@@ -80,20 +80,20 @@ const resizeFile = (file) =>
   });
   const onSubmit = (values) => {
 
-    console.log("submited")
+    // console.log("submited")
       setstatus('loding..') 
-      console.log(values)
-      console.log(image)
+      // console.log(values)
+      // console.log(image)
 
       
       
       const data={  firstname:values.firstname,email:values.email,lastname:values.lastname,password:values.password,confrimpassword:values.confrimpassword,profile:image
       }
-      console.log(data)
+      // console.log(data)
       //axios calling
       signuppost(data).then((datas)=>
       {
-        console.log(datas)
+        // console.log(datas)
     if(datas.status===401)
     {
       toast("email alredy exists")
@@ -102,7 +102,7 @@ const resizeFile = (file) =>
     }
     setstatus("submited");
     navigate("/user/login")
-    console.log(data.profile.myfile.Promise)
+    // console.log(data.profile.myfile.Promise)
 
     toast("verify- Mail has been sent")    
     //adding token to the local storage

@@ -5,12 +5,12 @@ const io=require("socket.io")(8900,{
     },
 });
 let users=[]
-console.log("users")
+// console.log("users")
 const adduser=(userid,socketid)=>{
-    console.log("run add")
+    // console.log("run add")
     !users.some((user)=>user.userid===userid) &&
     users.push({userid,socketid})
-    console.log(users)
+    // console.log(users)
 }
 const removeuser=(socketid)=>{
     users=users.filter((user)=>user.socketid !==socketid)
@@ -23,7 +23,7 @@ const getuser=(userid)=>{
 
 //for conncetion esdtablishment
 io.on("connection", (socket) => {
-    console.log("socket.id")
+    // console.log("socket.id")
     io.emit("welcome","this is the socket server")
     socket.on("adduser",(userid)=>{
          adduser(userid,socket.id)
@@ -32,7 +32,7 @@ io.on("connection", (socket) => {
     // console.log(users)
 //send msg
 socket.on("sendmessage",({senderid,receiverid,text})=>{
-    console.log(receiverid)
+    // console.log(receiverid)
     // console.log(text)
     const user=getuser(receiverid)
     // console.log(user)
@@ -44,7 +44,7 @@ socket.on("sendmessage",({senderid,receiverid,text})=>{
 
     //for the dissconnection
     socket.on("disconnect",()=>{
-        console.log("a user disconnecrted")
+        // console.log("a user disconnecrted")
         removeuser(socket.id)
         io.emit("getuser",users)
 
