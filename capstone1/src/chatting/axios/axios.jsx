@@ -1,6 +1,6 @@
 import React from 'react'
 import axios from 'axios'
-import { API } from '../loginandsignup/global'
+import { API } from '../../loginandsignup/global'
 
 export const signuppost=(data)=>
 {
