@@ -5,7 +5,8 @@ import { Formik, Form, Field, ErrorMessage} from "formik";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import './resetpassword.css'
-import { resetpassword } from "../axios/axios";
+import { resetpassword } from "../chatting/axios/axios";
+// import { resetpassword } from "../axios/axios";
 export default function Resetpass()
 {
    const nav=useNavigate()

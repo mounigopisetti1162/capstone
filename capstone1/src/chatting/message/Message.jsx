@@ -3,7 +3,7 @@ import { API } from '../../loginandsignup/global'
 import {format} from 'timeago.js'
 import './Message.css'
 import axios from 'axios'
-import { getuserbyid } from '../../axios/axios'
+import { getuserbyid } from '../axios/axios'
 function Message({message,own,recevier,sender}) {
   const [friend,setfriend]=useState("")
 

@@ -13,7 +13,8 @@ import {  toast } from 'react-toastify';
 import { API } from '../loginandsignup/global'
 import {io, Socket} from "socket.io-client"
 import Allfrds from './frds/all-frds'
-import { conversation_id, conversation_singlemsg_id, getalluser_with_headers, getuserbyid, messagepost } from '../axios/axios'
+// import { getuserbyid } from './axios/axios'
+import { conversation_id, conversation_singlemsg_id, getalluser_with_headers, getuserbyid, messagepost } from './axios/axios'
 // import SearchBar from './Searchbar'
 
 function Conversation() {

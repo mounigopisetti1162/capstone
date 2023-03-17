@@ -4,7 +4,8 @@ import {  toast } from 'react-toastify';
 
 import { Formik, Form, Field, ErrorMessage} from "formik";
 import { useNavigate } from "react-router-dom";
-import { forgetpass } from "../axios/axios";
+import { forgetpass } from "../chatting/axios/axios";
+// import { forgetpass } from "../axios/axios";
 
 export default function Email()
 {

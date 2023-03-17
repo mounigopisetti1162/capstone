@@ -1,7 +1,8 @@
 import LogoutIcon from '@mui/icons-material/Logout';
 import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { getuserbyid } from '../../axios/axios';
+import { getuserbyid } from '../../chatting/axios/axios';
+// import { getuserbyid } from '../../axios/axios';
 import './Navbar.css';
 function Navbar() {
   const navigate=useNavigate()

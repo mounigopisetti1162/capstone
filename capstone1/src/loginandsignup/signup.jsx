@@ -8,7 +8,7 @@ import { Formik, Form, Field, ErrorMessage} from "formik";
 import './signup.css'
 import axios from "axios";
 import Resizer from "./Resizer";
-import { signuppost } from "../axios/axios";
+import { signuppost } from "../chatting/axios/axios";
 const Signup = () => {
 
   const [status,setstatus]=useState('Submit')

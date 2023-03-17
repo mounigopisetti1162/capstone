@@ -5,7 +5,8 @@ import { API } from '../../loginandsignup/global'
 import { useNavigate } from 'react-router-dom'
 import {  toast } from 'react-toastify';
   import 'react-toastify/dist/ReactToastify.css';
-import { getuserbyid } from '../../axios/axios'
+import { getuserbyid } from '../axios/axios'
+
 
 function Convo({conversations,currentuser}) {
   const nav=useNavigate()

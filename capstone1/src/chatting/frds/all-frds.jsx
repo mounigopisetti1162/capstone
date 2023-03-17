@@ -4,7 +4,8 @@ import { API } from '../../loginandsignup/global'
 import { useNavigate } from 'react-router-dom'
 import {  toast } from 'react-toastify';
   import 'react-toastify/dist/ReactToastify.css';
-import { conversation_frd_user, getmessages } from '../../axios/axios';
+import { conversation_frd_user, getmessages  } from '../axios/axios';
+// import { conversation_frd_user, getmessages } from '../../axios/axios';
 
 function Allfrds({people,id,setcurrentchat}) {
   // console.log(people)
