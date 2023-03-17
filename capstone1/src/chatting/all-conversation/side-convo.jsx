@@ -5,6 +5,7 @@ import { API } from '../../loginandsignup/global'
 import { useNavigate } from 'react-router-dom'
 import {  toast } from 'react-toastify';
   import 'react-toastify/dist/ReactToastify.css';
+import { getuserbyid } from '../../axios/axios'
 
 function Convo({conversations,currentuser}) {
   const nav=useNavigate()
@@ -13,9 +14,12 @@ function Convo({conversations,currentuser}) {
     const frdid=conversations.members.find(m=>m!==currentuser.id)
     const getuser=async ()=>{
       console.log("sideconvoo")
-      const user=await axios.get(`${API}/user/users/${frdid}`)
+      //axios calling
+
+      const user= await getuserbyid(frdid)
+      // await axios.get(`${API}/user/users/${frdid}`)
       setuser(user.data)
-      // console.log(user.data)
+      
     }
     getuser()
   },[])

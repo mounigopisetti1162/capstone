@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import { API } from '../../loginandsignup/global'
 import {format} from 'timeago.js'
-
 import './Message.css'
 import axios from 'axios'
+import { getuserbyid } from '../../axios/axios'
 function Message({message,own,recevier,sender}) {
   const [friend,setfriend]=useState("")
 
@@ -13,7 +13,7 @@ useEffect(()=>
 
   const frduser=async ()=>{
     // console.log("first")
-    const frd= await axios.get(`${API}/user/users/${sender}`)
+    const frd= await getuserbyid(sender)
     setfriend(frd.data)
     // console.log(frd.data)
   }

@@ -4,6 +4,7 @@ import { API } from '../../loginandsignup/global'
 import { useNavigate } from 'react-router-dom'
 import {  toast } from 'react-toastify';
   import 'react-toastify/dist/ReactToastify.css';
+import { conversation_frd_user, getmessages } from '../../axios/axios';
 
 function Allfrds({people,id,setcurrentchat}) {
   // console.log(people)
@@ -22,8 +23,9 @@ const handelclick=async(people)=>{
 
 console.log(id.id)
 console.log(people._id)
+//axios calling
+const existing=await conversation_frd_user(id.id,people._id)
 
-const existing=await axios({method:"get",url:`${API}/message/convo/${id.id}/${people._id}`,headers:{"token":localStorage.getItem("token")}})
 if(existing.data[0]!==undefined)
 {
   setcurrentchat(existing.data[0])
@@ -35,10 +37,10 @@ const members={recid:id.id,senid:people._id}
 const getconversation=async()=>
 {
   try {
-    const res=await axios.post(`${API}/message/`,members)
+    const res=await getmessages(members)
   
 
-    const existing=await axios({method:"get",url:`${API}/message/convo/${id.id}/${people._id}`,headers:{"token":localStorage.getItem("token")}})
+    const existing=await conversation_frd_user(id.id,people._id)
     if(res.response.status===406)
     {
       toast("Unauthorized activities detedted")

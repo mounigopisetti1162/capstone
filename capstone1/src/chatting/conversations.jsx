@@ -13,6 +13,7 @@ import {  toast } from 'react-toastify';
 import { API } from '../loginandsignup/global'
 import {io, Socket} from "socket.io-client"
 import Allfrds from './frds/all-frds'
+import { conversation_id, conversation_singlemsg_id, getalluser_with_headers, getuserbyid, messagepost } from '../axios/axios'
 // import SearchBar from './Searchbar'
 
 function Conversation() {
@@ -35,8 +36,8 @@ const scrollref=useRef()
 
 
 useEffect(()=>{
-// socket.current=io("http://localhost:4000", 
-socket.current=io("https://socket-server-api.onrender.com", 
+socket.current=io("http://localhost:4000", 
+// socket.current=io("https://socket-server-api.onrender.com", 
 {
   // var socket = io('http://[serverip]:3000');
 
@@ -80,27 +81,19 @@ useEffect(()=>{
  })
   },[id.id])
 
-  // useEffect(()=>{
-  //   socket.on("welcome",message=>{
-  //     console.log(message)
-  //   })
-  // },[socket])
+
 
 
 
 useEffect(()=>{
   const getpeople=async ()=>{
    console.log("second")
-      await axios({method:"get",url:`${API}/user/users`,headers:{"token":localStorage.getItem("token")}}).then((data)=>
+      await getalluser_with_headers(API).then((data)=>
       {
         
         let array =[] ;
         data.data.forEach((e)=>array.push(e._id))
-        // console.log(array);
-        
-          // const {man}=users.data 
-          // console.log(users.data)
-          // console.log(id.id) 
+      
         setpeople(data.data)
         
       }).catch ((error)=>{
@@ -114,33 +107,16 @@ useEffect(()=>{
                 }
       })
       
-      
-        
-      
-  
-    // }
-    // axios.get(`${API}/user/users`)
-    // .then((res)=>console.log(res.data[0]._id))
-    // .catch((err)=>console.log(err))
-  
   }
 
 
 
   const getconversations=async ()=>{
 
-    const conversation=await axios({method:"get",url:`${API}/message/convo/${id.id}`,headers:{"token":localStorage.getItem("token")}})
-    // console.log(conversation.data)
-    // console.log(conversation.status)
-    // if(conversation.status===406)
-    // {
-    //   toast("Unauthorized activities detedted")
-    //   localStorage.removeItem("token")
-    //   nav('/user/login')
-    // }
+    const conversation=await conversation_id(API,id.id)
+  
     setconversations(conversation.data)
-    // console.log("first")
-    // console.log(id.id)
+ 
   }
     
 //   }
@@ -162,12 +138,12 @@ useEffect(()=>
     console.log(receiverid)
     try {
       
-      const frd=await axios.get(`${API}/user/users/${receiverid}`)
+      const frd=await getuserbyid(receiverid)
           setfrduserpeo(frd.data)
           setfriendname(frd.data.firstname)
           console.log(frd.data.firstname)
     console.log("frd")
-    const idfrd=await axios.get(`${API}/user/users/${id.id}`)
+    const idfrd=await getuserbyid(id.id)
     setidfrd(idfrd.data)
 
     } catch (error) {
@@ -177,21 +153,13 @@ useEffect(()=>
 }
 frduser()
 },[currentchat,newmessage])
-// console.log("first")
-// console.log(idfrd)
-// console.log("second")
-// console.log(frduserpeo)
+
 useEffect(()=>{
   const getmessages=async()=>{
     console.log("first")
     // console.log(localStorage.getItem("token"))
-    const message=await axios({method:"get",url:`${API}/message/singlemsg/${currentchat?._id}`,headers:{"token":localStorage.getItem("token")}})
-    // if(message.status===406)
-    // {
-    //   toast("Unauthorized activities detedted")
-    //   localStorage.removeItem("token")
-    //   nav('/user/login')
-    // }
+    const message=await conversation_singlemsg_id(currentchat)
+  
     setmessage(message.data)
     // console.log("message")
   }
@@ -212,9 +180,11 @@ useEffect(()=>{
 
 const handelSubmit=async (e)=>{
   e.preventDefault();
+  const chatid=currentchat._id
+  const idid=id.id
   const messagess={
-    conversation_id:currentchat._id,
-    sender:id.id,
+    conversation_id:chatid,
+    sender:idid,
     text:newmessage
   }
   const receiverid=currentchat.members.find((member)=>member!==id.id);
@@ -230,7 +200,7 @@ console.log(id.id)
   if(newmessage!=="")
   {
   try {
-    const res=await axios.post(`${API}/message/convo`,messagess)
+    const res=await messagepost(messagess)
   
     setmessage([...message,res.data])
     setnewmessage("")

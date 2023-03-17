@@ -8,6 +8,7 @@ import { Formik, Form, Field, ErrorMessage} from "formik";
 import './signup.css'
 import axios from "axios";
 import Resizer from "./Resizer";
+import { signuppost } from "../axios/axios";
 const Signup = () => {
 
   const [status,setstatus]=useState('Submit')
@@ -89,10 +90,8 @@ const resizeFile = (file) =>
       const data={  firstname:values.firstname,email:values.email,lastname:values.lastname,password:values.password,confrimpassword:values.confrimpassword,profile:image
       }
       console.log(data)
-      
-      axios.post(`${API}/user/signup`,data)
-     
-      .then((datas)=>
+      //axios calling
+      signuppost(data).then((datas)=>
       {
         console.log(datas)
     if(datas.status===401)
@@ -115,10 +114,7 @@ const resizeFile = (file) =>
     }
   //change the color
     const renderError = (message) => <p className="help is-danger">{message}</p>;
-  // console.log(iteam)
-  
 
-// console.log(image)
 
   return (
     <>

@@ -8,6 +8,7 @@ import GroupsIcon from '@mui/icons-material/Groups';
 import { useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
 import { API } from '../../loginandsignup/global';
+import { getuserbyid } from '../../axios/axios';
 function Navbar() {
   const navigate=useNavigate()
     const logout=()=>{
@@ -21,28 +22,19 @@ const [people,setpeople]=useState()
 
           const navuser=async()=>{
             console.log("navi")
-            const user=await axios.get(`${API}/user/users/${id.id}`)
-            // if(user.status===406)
-            // {
-            //   toast("Unauthorized activities detedted")
-            //   localStorage.removeItem("token")
-            //   nav('/user/login')
-            // }
+            const user=await getuserbyid(id.id)
+           
             setpeople(user.data)
             console.log(user)
             console.log("navigationnnnn")
           }
           navuser()
         },[id.id])
-        // console.log(people)
           const navi=()=>{
-    // navigate(`/profile/${id.id}`)
+    navigate(`/profile/${id.id}`)
     console.log("first")
   }
-  // console.log(people.profile)
-  // console.log(people.profile)
-
-
+  
   return (
     <>
     <nav class="navbar bg-body-tertiary">
@@ -51,10 +43,6 @@ const [people,setpeople]=useState()
     <a class="navbar-brand app-name">InfIChat</a>
     </div>
     <div className='center'>
-
-    
-   
-
     </div>
     {people ?
   <div className='right'>

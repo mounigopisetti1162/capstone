@@ -4,6 +4,7 @@ import {  toast } from 'react-toastify';
 
 import { Formik, Form, Field, ErrorMessage} from "formik";
 import { useNavigate } from "react-router-dom";
+import { forgetpass } from "../axios/axios";
 
 export default function Email()
 {
@@ -11,12 +12,7 @@ export default function Email()
 
     const onSubmit=(values)=>{
       console.log(values);
-        fetch(`${API}/user/forgotpass`,{
-         
-        method:"POST",
-        body:JSON.stringify(values),
-        headers:{"Content-type":"application/json"},
-    }).then((data)=> data.json()).then((data)=>{
+     forgetpass().then((data)=> data.json()).then((data)=>{
       toast("Link Sent to mail")
       console.log(data);
       // nav("/login")

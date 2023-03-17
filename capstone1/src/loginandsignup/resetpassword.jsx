@@ -5,16 +5,13 @@ import { Formik, Form, Field, ErrorMessage} from "formik";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import './resetpassword.css'
+import { resetpassword } from "../axios/axios";
 export default function Resetpass()
 {
    const nav=useNavigate()
 const onSubmit=(values)=>{
     console.log("data")
-    fetch(`${API}/user/reset-password`,{
-    method:"POST",
-    body:JSON.stringify(values),
-    headers:{"Content-type":"application/json"},
-}).then((data)=> data.json()).then((data)=>{
+    resetpassword(values).then((data)=>{
         console.log(data)
         toast("chaned sucessfully")
         nav('/user/login')
