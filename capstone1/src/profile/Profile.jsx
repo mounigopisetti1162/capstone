@@ -254,11 +254,11 @@ const resizeFile = (file) =>
           
 
 
-          <button type="submit" className="btn btn-primary btn-p" 
+          {/* <button type="submit" className="btn btn-primary btn-p" 
           onClick={but}
           >
             {status}
-           </button>
+           </button> */}
           <button type="button" className="btn btn-success btn-p" 
           onClick={but}
           >
