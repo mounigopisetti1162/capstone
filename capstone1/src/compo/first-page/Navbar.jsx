@@ -18,22 +18,21 @@ const [people,setpeople]=useState()
         const id=useParams()
         const nav=useNavigate()
         useEffect(()=>{
-          // console.log(id.id)
+          console.log(id.id)
 
           const navuser=async()=>{
-            // console.log("navi")
+            console.log("navi")
             const user=await getuserbyid(id.id)
            
             setpeople(user.data)
-            // console.log(user)
-            // console.log("navigationnnnn")
+            console.log(user)
+            console.log("navigationnnnn")
           }
           navuser()
         },[id.id])
-        const navi=()=>{
-          navigate(`/profile/${id.id}`)
-          console.log("first")
-    // console.log("first")
+          const navi=()=>{
+    navigate(`/profile/${id.id}`)
+    console.log("first")
   }
   
   return (
