@@ -110,10 +110,10 @@ const resizeFile = (file) =>
     }
   //change the color
     const renderError = (message) => <p className="help is-danger">{message}</p>;
-  // console.log(iteam)
+  console.log(iteam)
   
 
-// console.log(image)
+console.log(image)
 
   return (
     <>
@@ -132,7 +132,7 @@ const resizeFile = (file) =>
     validationSchema={validationSchema}
     onSubmit={values => {
        onSubmit(values);
-      console.log(values)
+      // console.log(values)
     }}>
 
     <div className="form">
