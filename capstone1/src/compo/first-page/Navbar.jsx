@@ -1,14 +1,8 @@
-import React, { useEffect, useState } from 'react'
 import LogoutIcon from '@mui/icons-material/Logout';
-import {Search} from '@mui/icons-material';
-import SearchIcon from '@mui/icons-material/Search';
-import './Navbar.css'
-import { fontSize } from '@mui/system';
-import GroupsIcon from '@mui/icons-material/Groups';
+import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import axios from 'axios';
-import { API } from '../../loginandsignup/global';
 import { getuserbyid } from '../../axios/axios';
+import './Navbar.css';
 function Navbar() {
   const navigate=useNavigate()
     const logout=()=>{
@@ -30,9 +24,10 @@ const [people,setpeople]=useState()
           }
           navuser()
         },[id.id])
-          const navi=()=>{
+          
+        const navi=()=>{
+          console.log("navbar")
     navigate(`/profile/${id.id}`)
-    console.log("first")
   }
   
   return (
