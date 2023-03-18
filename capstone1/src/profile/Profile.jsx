@@ -8,7 +8,7 @@ import { Formik, Form, Field, ErrorMessage} from "formik";
 import Resizer from '../loginandsignup/Resizer';
 import './Profile.css'
 const Profile = () => {
-  const [status,setstatus]=useState('Submit')
+  // const [status,setstatus]=useState('Submit')
   const navigate=useNavigate()
 // validations of the form
 const {id}=useParams()
@@ -110,7 +110,7 @@ const resizeFile = (file) =>
     }
   //change the color
     const renderError = (message) => <p className="help is-danger">{message}</p>;
-  console.log(iteam)
+  // console.log(iteam)
   
 
 console.log(image)
