@@ -95,6 +95,8 @@ const renderError = (message) => <p className="help is-danger">{message}</p>;
   >
     <div>
       <Form>
+        <p className='para' >User:mounika.g1162@gmail.com<br></br>
+        password:12345678</p>
         <div
           className="container1"
           style={{

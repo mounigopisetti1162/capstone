@@ -16,6 +16,9 @@ background-image: url("data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAA
     /* background: linear-gradient(rgb(222, 215, 85),rgb(225, 73, 222)); */
     /* background:  black; */
 }
+.para{
+color: white;
+}
 .signup1{
     margin-bottom: 50px;
     margin-top: 50px;
